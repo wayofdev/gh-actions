@@ -19,6 +19,7 @@ on:  # yamllint disable-line rule:truthy
         description: The name of the package to release
         required: true
         type: string
+    secrets:
       token:
         description: The GitHub token to use when creating the release
         required: true
@@ -34,7 +35,7 @@ jobs:
         uses: google-github-actions/release-please-action@v3
         id: release
         with:
-          token: ${{ inputs.token }}
+          token: ${{ secrets.token }}
           release-type: node
           package-name: ${{ inputs.package-name }}
           default-branch: ${{ inputs.branch }}

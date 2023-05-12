@@ -13,6 +13,7 @@ on:  # yamllint disable-line rule:truthy
         required: true
         type: string
         default: ubuntu-latest
+    secrets:
       token:
         description: The GitHub token to use when applying labels
         required: true
@@ -27,6 +28,6 @@ jobs:
       - name: 🏷️ Apply labels
         uses: actions/labeler@v4
         with:
-          repo-token: "${{ inputs.token }}"
+          repo-token: "${{ secrets.token }}"
 
 ...
