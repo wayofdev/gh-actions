@@ -1,0 +1,57 @@
+---
+
+# https://github.com/google-github-actions/release-please-action#release-types-supported
+
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+      os:
+        description: The operating system to run the workflow on
+        required: true
+        type: string
+        default: ubuntu-latest
+      branch:
+        description: The branch to use when creating the release
+        required: true
+        type: string
+        default: master
+      package-name:
+        description: The name of the package to release
+        required: true
+        type: string
+      token:
+        description: The GitHub token to use when creating the release
+        required: true
+        type: string
+
+name: 📦 Create release
+
+jobs:
+  release:
+    runs-on: ${{ inputs.os }}
+    steps:
+      - name: 🎉 Create release
+        uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          token: ${{ inputs.token }}
+          release-type: node
+          package-name: ${{ inputs.package-name }}
+          default-branch: ${{ inputs.branch }}
+          changelog-types: |
+            [
+              { "type": "feat", "section": "Features", "hidden": false },
+              { "type": "fix", "section": "Bug Fixes", "hidden": false },
+              { "type": "perf", "section": "Performance Improvements", "hidden": false },
+              { "type": "docs", "section": "Documentation", "hidden": false },
+              { "type": "chore", "section": "Miscellaneous", "hidden": false },
+              { "type": "style", "section": "Styles", "hidden": true },
+              { "type": "revert", "section": "Reverts", "hidden": true },
+              { "type": "deps", "section": "Dependencies", "hidden": true },
+              { "type": "refactor", "section": "Code Refactoring", "hidden": true },
+              { "type": "test", "section": "Tests", "hidden": true },
+              { "type": "build", "section": "Build System", "hidden": true },
+              { "type": "ci", "section": "Continuous Integration", "hidden": true }
+            ]
+
+...
