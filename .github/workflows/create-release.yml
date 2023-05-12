@@ -23,7 +23,6 @@ on:  # yamllint disable-line rule:truthy
       token:
         description: The GitHub token to use when creating the release
         required: true
-        type: string
 
 name: 📦 Create release
 
