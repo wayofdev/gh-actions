@@ -26,6 +26,8 @@ jobs:
     steps:
       - name: 📦 Check out the codebase
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: 🐞 Differential shell-check
         uses: redhat-plumbers-in-action/differential-shellcheck@v4

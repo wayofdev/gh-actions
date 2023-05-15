@@ -29,3 +29,5 @@ jobs:
         uses: Codesee-io/codesee-action@v2
         with:
           codesee-token: ${{ secrets.codesee-token }}
+
+...
