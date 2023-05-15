@@ -63,7 +63,10 @@ install: i ## Same as `make i`
 validate: ## Validate all github action files
 	@echo "Validating github actions..."
 	action-validator .github/workflows/apply-labels.yml
+	action-validator .github/workflows/auto-merge-release.yml
+	action-validator .github/workflows/create-arch-diagram.yml
 	action-validator .github/workflows/create-release.yml
+	action-validator .github/workflows/shellcheck.yml
 .PHONY: validate
 
 hooks: ## Install git hooks from pre-commit-config

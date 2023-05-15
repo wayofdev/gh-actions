@@ -1,0 +1,31 @@
+---
+
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+      os:
+        description: The operating system to run the workflow on
+        required: true
+        type: string
+        default: ubuntu-latest
+      continue-on-error:
+        description: Continue if there is an error
+        required: false
+        type: boolean
+        default: true
+    secrets:
+      codesee-token:
+        description: CodeSee token used to run this workflow
+        required: true
+
+name: 🤖 CodeSee
+
+jobs:
+  codesee:
+    runs-on: ${{ inputs.os }}
+    continue-on-error: ${{ inputs.continue-on-error }}
+    steps:
+      - name: 💻 Analyze the repo with CodeSee
+        uses: Codesee-io/codesee-action@v2
+        with:
+          codesee-token: ${{ secrets.codesee-token }}

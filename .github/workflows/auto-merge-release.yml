@@ -1,0 +1,46 @@
+---
+
+# https://github.com/peter-evans/enable-pull-request-automerge
+
+on:  # yamllint disable-line rule:truthy
+  workflow_call:
+    inputs:
+      os:
+        description: The operating system to run the workflow on
+        required: true
+        type: string
+        default: ubuntu-latest
+      pull-request-number:
+        description: The pull request number
+        required: true
+        type: number
+      actor:
+        description: Auto-merge only if github username matches this value
+        required: true
+        type: string
+        default: lotyp
+      merge-method:
+        description: The merge method
+        required: false
+        type: string
+        default: merge
+    secrets:
+      token:
+        description: Github token used to run this workflow. To trigger other workflows, pass PAT token instead of GITHUB_TOKEN
+        required: true
+
+name: 🤞 Auto merge release
+
+jobs:
+  auto-merge:
+    if: github.actor == inputs.actor && startsWith(github.head_ref, 'release-please--')
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🤞 Auto-merge pull request
+        uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          pull-request-number: ${{ inputs.pull-request-number }}
+          merge-method: ${{ inputs.merge-method }}
+          token: ${{ secrets.token }}
+
+...

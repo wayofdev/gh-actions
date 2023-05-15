@@ -17,7 +17,6 @@ on:  # yamllint disable-line rule:truthy
       token:
         description: Github token used to run this workflow
         required: true
-        type: string
 
 name: 🐞 Differential shell-check
 
