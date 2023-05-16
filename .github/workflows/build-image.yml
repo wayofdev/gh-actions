@@ -66,7 +66,6 @@ jobs:
             prefix=${{ inputs.image-template }}-
 
       - name: 🔑 Login to docker-hub
-        if: inputs.push-to-hub == true
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.docker-username }}
@@ -90,8 +89,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: ${{ inputs.push-to-hub == true }}
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=registry,ref=${{ inputs.image-namespace }}:{{ inputs.image-template }}-cache
+          cache-to: type=registry,ref=${{ inputs.image-namespace }}:{{ inputs.image-template }}-cache,mode=max
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: 🧪 Test Docker image
