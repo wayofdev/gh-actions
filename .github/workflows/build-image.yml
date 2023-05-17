@@ -18,6 +18,11 @@ on:  # yamllint disable-line rule:truthy
         required: true
         type: string
         default: wayofdev/php-base
+      image-template-path:
+        description: The path to the template of the image
+        required: false
+        type: string
+        default: ./dist/base
       image-template:
         description: The template of the image
         required: true
@@ -85,7 +90,7 @@ jobs:
       - name: 🚀 Build image and push to docker-hub
         uses: docker/build-push-action@v4
         with:
-          context: ./dist/base/${{ inputs.image-template }}
+          context: ${{ inputs.image-template-path }}/${{ inputs.image-template }}
           platforms: linux/amd64,linux/arm64
           push: ${{ inputs.push-to-hub == true }}
           tags: ${{ steps.meta.outputs.tags }}
