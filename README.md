@@ -96,16 +96,19 @@ jobs:
 
 This workflow builds a docker image and pushes it to the GitHub Container Registry.
 
-Build image with "latest" tag:
+Example repositories, using this workflow:
+
+* [wayofdev/docker-php-base](https://github.com/wayofdev/docker-php-base)
+* [wayofdev/docker-php-dev](https://github.com/wayofdev/docker-php-dev)
+* [wayofdev/docker-node](https://github.com/wayofdev/docker-node)
+
+**Build image with "latest" tag:**
 
 ```yaml
 ---
 
-on: # yamllint disable-line rule:truthy
+on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
@@ -113,19 +116,30 @@ on: # yamllint disable-line rule:truthy
 name: 🚀 Build docker images with latest tag
 
 jobs:
-  build:
+  prepare:
     runs-on: "ubuntu-latest"
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - name: ⚙️ Generate matrix
+        id: matrix
+        run: |
+          echo 'matrix={
+            "os_name": ["alpine"],
+            "php_version": ["8.1", "8.2"],
+            "php_type": ["fpm", "cli", "supervisord"]
+          }' | tr -d '\n' >> $GITHUB_OUTPUT
+
+  build:
+    needs: prepare
     strategy:
-      fail-fast: true
-      matrix:
-        os_name: [ "alpine" ]
-        php_version: [ "8.1", "8.2" ]
-        php_type: [ "fpm", "cli", "supervisord" ]
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix )}}
     uses: wayofdev/gh-actions/.github/workflows/build-image.yml@master
     with:
       os: "ubuntu-latest"
-      push-to-hub: ${{ github.event_name != 'pull_request' }}
+      push-to-hub: true
       image-namespace: "wayofdev/php-base"
+      image-template-path: "./dist/base"
       image-template: ${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}
       image-version: latest
     secrets:
@@ -134,5 +148,184 @@ jobs:
 
 ...
 ```
+
+**Build image with "release" tag:**
+
+```yaml
+---
+
+on:  # yamllint disable-line rule:truthy
+  release:
+    types:
+      - released
+
+name: 🚀 Build docker images with release tag
+
+jobs:
+  prepare:
+    runs-on: "ubuntu-latest"
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: ⚙️ Generate matrix
+        id: matrix
+        run: |
+          echo 'matrix={
+            "os_name": ["alpine"],
+            "php_version": ["8.1", "8.2"],
+            "php_type": ["fpm", "cli", "supervisord"]
+          }' | tr -d '\n' >> $GITHUB_OUTPUT
+
+      - name: ⚙️ Get version for image tag
+        id: version
+        run: |
+          version=${{ github.ref_name }}
+          version=${version#v}
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+  build:
+    needs: prepare
+    strategy:
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix )}}
+    uses: wayofdev/gh-actions/.github/workflows/build-image.yml@master
+    with:
+      os: "ubuntu-latest"
+      push-to-hub: true
+      image-namespace: "wayofdev/php-base"
+      image-template-path: "./dist/base"
+      image-template: ${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}
+      image-version: ${{ needs.prepare.outputs.version }}
+    secrets:
+      docker-username: ${{ secrets.DOCKER_USERNAME }}
+      docker-password: ${{ secrets.DOCKER_TOKEN }}
+
+...
+```
+
+<br>
+
+### → `create-arch-diagram.yml:`
+
+This workflow leverages the [codesee-io/codesee-action](https://github.com/Codesee-io/codesee-action) action to automatically generate architecture diagrams for your codebase whenever a pull request is made.
+
+CodeSee is an open-source tool that helps visualize your codebase and its dependencies, making it easier for new contributors to understand the project or for maintaining a clear view of your project's architecture over time.
+
+Here is an example of how to use this workflow:
+
+```yaml
+---
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - develop
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+name: 🤖 CodeSee
+
+permissions: read-all
+
+jobs:
+  codesee:
+    uses: wayofdev/gh-actions/.github/workflows/create-arch-diagram.yml@master
+    with:
+      os: ubuntu-latest
+      continue-on-error: true
+    secrets:
+      codesee-token: ${{ secrets.CODESEE_ARCH_DIAG_API_TOKEN }}
+
+...
+```
+
+<br>
+
+### → `create-release.yml:`
+
+This workflow uses [google-github-actions/release-please-action](https://github.com/google-github-actions/release-please-action) to create automated releases based on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
+
+Here is an example of how to use this workflow:
+
+```yaml
+---
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - master
+
+name: 📦 Create release
+
+jobs:
+  release:
+    uses: wayofdev/gh-actions/.github/workflows/create-release.yml@master
+    with:
+      os: ubuntu-latest
+      branch: master
+      package-name: docker-php-base
+    secrets:
+      token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+
+...
+```
+
+<br>
+
+### → `shellcheck.yml:`
+
+This workflow uses [redhat-plumbers-in-action/differential-shellcheck](https://github.com/redhat-plumbers-in-action/differential-shellcheck) to run shell script analysis.
+
+Here is an example of how to use this workflow:
+
+```yaml
+---
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+
+name: 🐞 Differential shell-check
+
+permissions:
+  contents: read
+
+jobs:
+  shellcheck:
+    uses: wayofdev/gh-actions/.github/workflows/shellcheck.yml@master
+    with:
+      os: ubuntu-latest
+      severity: warning
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
+...
+```
+
+<br>
+
+## 🤝 License
+
+[![Licence](https://img.shields.io/github/license/wayofdev/gh-actions?style=for-the-badge&color=blue)](./LICENSE)
+
+<br>
+
+## 🙆🏼‍♂️ Author Information
+
+This repository was created in **2023** by [lotyp / wayofdev](https://github.com/wayofdev).
+
+<br>
+
+## 🙌 Want to Contribute?
+
+Thank you for considering contributing to the wayofdev community!
+We are open to all kinds of contributions. If you want to:
+
+- 🤔 Suggest a feature
+- 🐛 Report an issue
+- 📖 Improve documentation
+- 👨‍💻 Contribute to the code
 
 <br>
