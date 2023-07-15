@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "@action-validator/core": "0.5.1",
+        "@action-validator/core": "0.5.3",
         "@action-validator/cli": "0.5.3"
     }
 }
