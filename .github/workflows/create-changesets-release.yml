@@ -17,7 +17,7 @@ on:
         required: true
         type: string
     secrets:
-      github_token:
+      token:
         required: true
       npm_token:
         required: true
@@ -57,5 +57,5 @@ jobs:
           setupGitUser: true
         env:
           HOME: ${{ github.workspace }}
-          GITHUB_TOKEN: ${{ secrets.github_token }}
+          GITHUB_TOKEN: ${{ secrets.token }}
           NPM_TOKEN: ${{ secrets.npm_token }}
