@@ -10,14 +10,14 @@ repos:
       - id: fix-encoding-pragma
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: 3.2.2
+    rev: 3.5.3
     hooks:
       - id: commitizen
         stages:
           - commit-msg
 
   - repo: https://github.com/mpalmer/action-validator
-    rev: v0.5.1
+    rev: v0.5.3
     hooks:
       - id: action-validator
         stages:
