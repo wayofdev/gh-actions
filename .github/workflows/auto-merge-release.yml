@@ -24,6 +24,11 @@ on:  # yamllint disable-line rule:truthy
         required: false
         type: string
         default: merge
+      allowed-ref:
+        description: The allowed ref to merge
+        required: false
+        type: string
+        default: release-please--
     secrets:
       token:
         description: Github token used to run this workflow. To trigger other workflows, pass PAT token instead of GITHUB_TOKEN
@@ -33,7 +38,7 @@ name: 🤞 Auto merge release
 
 jobs:
   auto-merge:
-    if: github.actor == inputs.actor && startsWith(github.head_ref, 'release-please--')
+    if: github.actor == inputs.actor && startsWith(github.head_ref, inputs.allowed-ref)
     runs-on: ubuntu-latest
     steps:
       - name: 🤞 Auto-merge pull request
