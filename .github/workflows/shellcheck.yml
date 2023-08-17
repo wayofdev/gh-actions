@@ -30,6 +30,7 @@ jobs:
           fetch-depth: 0
 
       - name: 🐞 Differential shell-check
+        id: shellcheck
         uses: redhat-plumbers-in-action/differential-shellcheck@v4
         with:
           severity: ${{ inputs.severity }}
