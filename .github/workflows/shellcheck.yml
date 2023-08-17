@@ -35,4 +35,11 @@ jobs:
           severity: ${{ inputs.severity }}
           token: ${{ secrets.token }}
 
+      - if: ${{ always() }}
+        name: 📤 Upload artifact with shell-check defects in SARIF format
+        uses: actions/upload-artifact@v3
+        with:
+          name: Differential shell-check SARIF
+          path: ${{ steps.shellcheck.outputs.sarif }}
+
 ...
