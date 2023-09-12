@@ -77,7 +77,7 @@ jobs:
           password: ${{ secrets.docker-password }}
 
       - name: 🖥️ Setup QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
         with:
           platforms: linux/amd64,linux/arm64
 
