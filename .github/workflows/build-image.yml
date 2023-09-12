@@ -71,7 +71,7 @@ jobs:
             prefix=${{ inputs.image-template }}-
 
       - name: 🔑 Login to docker-hub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.docker-username }}
           password: ${{ secrets.docker-password }}
