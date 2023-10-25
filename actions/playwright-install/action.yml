@@ -56,4 +56,4 @@ runs:
     - name: 📦 Install playwright browsers
       if: steps.playwright-cache.outputs.cache-matched-key != ${{ steps.playwright-cache-config.outputs.CACHE_KEY }}
       shell: bash
-      run: pnpm exec playwright install --with-deps ${{ inputs.browsers }}
+      run: pnpx playwright install --with-deps ${{ inputs.browsers }}
