@@ -37,7 +37,7 @@ jobs:
           token: ${{ secrets.token }}
           release-type: node
           package-name: ${{ inputs.package-name }}
-          default-branch: ${{ inputs.branch }}
+          target-branch: ${{ inputs.branch }}
           changelog-types: |
             [
               { "type": "feat", "section": "Features", "hidden": false },
