@@ -27,7 +27,7 @@ jobs:
     runs-on: ${{ inputs.os }}
     steps:
       - name: 🏷️ Apply labels
-        uses: actions/labeler@v4
+        uses: actions/labeler@v5
         with:
           repo-token: "${{ secrets.token }}"
 
