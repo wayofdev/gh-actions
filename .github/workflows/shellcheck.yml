@@ -38,7 +38,7 @@ jobs:
 
       - if: ${{ always() }}
         name: 📤 Upload artifact with shell-check defects in SARIF format
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Differential shell-check SARIF
           path: ${{ steps.shellcheck.outputs.sarif }}
