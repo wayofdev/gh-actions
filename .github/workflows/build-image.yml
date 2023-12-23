@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - name: 🛠️ Install goss and dgoss
-        uses: e1himself/goss-installation-action@v1.1.0
+        uses: e1himself/goss-installation-action@v1.2.1
 
       - name: 🤖 Generate dist files
         run: make generate
