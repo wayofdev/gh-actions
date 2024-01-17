@@ -53,7 +53,7 @@ runs:
         echo "YEAR_MONTH=$(/bin/date -u "+%Y%m")" >> $GITHUB_OUTPUT
 
     - name: 🗄️ Setup pnpm cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       id: pnpm-store-cache
       with:
         path: ${{ steps.pnpm-config.outputs.STORE_PATH }}
@@ -64,7 +64,7 @@ runs:
     - name: ♻️ Restore node_modules
       if: inputs.cache-node-modules == 'true'
       id: pnpm-nm-cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ${{ inputs.cwd }}/**/node_modules
         key: pnpm-nm-cache-${{ inputs.cache-prefix }}-${{ runner.os }}-${{ steps.pnpm-config.outputs.CURRENT_NODE_VERSION }}-${{ steps.pnpm-config.outputs.CURRENT_BRANCH }}-${{ hashFiles('**/pnpm-lock.yaml') }}
