@@ -4,6 +4,6 @@
     "private": true,
     "dependencies": {
         "@action-validator/core": "0.5.4",
-        "@action-validator/cli": "0.5.4"
+        "@action-validator/cli": "0.6.0"
     }
 }
