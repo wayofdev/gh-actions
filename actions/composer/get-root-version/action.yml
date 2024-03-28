@@ -1,0 +1,30 @@
+# Documentation References:
+# - Creating a Composite Action: https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+# - Metadata Syntax for Inputs: https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs
+# - Runs for Composite Actions: https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#runs-for-composite-run-steps-actions
+# - Composer CLI Documentation: https://getcomposer.org/doc/03-cli.md#composer-root-version
+# - Other Implementations: https://github.com/ergebnis/.github/blob/main/actions
+
+name: 🎯 Get composer root version
+description: Determines the composer root version and exports it as COMPOSER_ROOT_VERSION environment variable
+
+inputs:
+  branch:
+    default: master
+    description: Name of the branch, e.g. "master"
+    required: true
+  working-directory:
+    default: "."
+    description: Which directory to use as working directory
+    required: true
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: 🎯 Get composer root version
+      env:
+        COMPOSER_DETERMINE_ROOT_VERSION_BRANCH: ${{ inputs.branch }}
+        COMPOSER_DETERMINE_ROOT_VERSION_WORKING_DIRECTORY: ${{ inputs.working-directory }}
+      run: ${{ github.action_path }}/run.sh
+      shell: bash
