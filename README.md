@@ -53,7 +53,7 @@ Read more about [reusing workflows](https://docs.github.com/en/actions/using-wor
 
 ### → Auto Label and Release Management
 
-####  `apply-labels.yml:`
+#### `apply-labels.yml:`
 
 Automatically applies labels to pull requests based on modified paths.
 
@@ -84,7 +84,7 @@ jobs:
 
 <br>
 
-### `auto-merge-release.yml:`
+#### `auto-merge-release.yml:`
 
 This workflow automatically merges releases. This workflow utilizes [peter-evans/enable-pull-request-automerge](https://github.com/peter-evans/enable-pull-request-automerge) to auto-merge releases that are created by [googleapis/release-please](https://github.com/googleapis/release-please).
 
@@ -119,7 +119,7 @@ jobs:
 
 <br>
 
-### `create-release.yml:` 
+#### `create-release.yml:` 
 
 This workflow uses [google-github-actions/release-please-action](https://github.com/google-github-actions/release-please-action) to create automated releases based on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
@@ -152,7 +152,7 @@ jobs:
 
 ### → Docker
 
-### `build-image.yml:`
+#### `build-image.yml:`
 
 This workflow builds a docker image and pushes it to the GitHub Container Registry.
 
@@ -267,7 +267,7 @@ jobs:
 
 ### → Create Diagrams
 
-### `create-arch-diagram.yml:`
+#### `create-arch-diagram.yml:`
 
 This workflow leverages the [codesee-io/codesee-action](https://github.com/Codesee-io/codesee-action) action to automatically generate architecture diagrams for your codebase whenever a pull request is made.
 
@@ -308,7 +308,7 @@ jobs:
 
 ### → Static Analysis
 
-### `shellcheck.yml:`
+#### `shellcheck.yml:`
 
 This workflow uses [redhat-plumbers-in-action/differential-shellcheck](https://github.com/redhat-plumbers-in-action/differential-shellcheck) to run shell script analysis.
 
@@ -345,7 +345,7 @@ Composite Actions are a powerful feature of GitHub Actions that allow you to cre
 
 ### → Dependency Management
 
-### `composer/install:`
+#### `composer/install:`
 
 This action installs dependencies with Composer based on the specified dependency level (`lowest`, `locked`, `highest`). It's designed to be flexible, allowing you to specify the working directory for the Composer command. 
 
@@ -387,7 +387,7 @@ jobs:
 
 <br>
 
-### `composer/get-cache-directory:`
+#### `composer/get-cache-directory:`
 
 This action determines the Composer cache directory and exports it as `COMPOSER_CACHE_DIR` environment variable. It allows you to specify the working directory for the Composer command to determine the cache directory.
 
@@ -420,7 +420,7 @@ jobs:
 
 <br>
 
-###  `composer/get-root-version:`
+#### `composer/get-root-version:`
 
 This action determines the Composer root version based on the specified branch and exports it as `COMPOSER_ROOT_VERSION` environment variable. It's designed to be flexible, allowing you to specify both the branch and the working directory for the Composer command to determine the root version.
 
@@ -452,9 +452,7 @@ jobs:
           working-directory: '.'
 ```
 
-These sections are designed to seamlessly integrate with your existing `README.md` documentation, providing clear instructions on how to use the new Composer actions within GitHub workflows.
-
-
+<br>
 
 ## 🤝 License
 
