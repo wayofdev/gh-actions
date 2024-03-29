@@ -21,7 +21,7 @@ This repository is a collection of reusable GitHub Actions workflows and composi
 Learn more about:
 
 - [Reusing Workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
-- [Creating Composite Actions](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action) 
+- [Creating Composite Actions](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action)
 
 <br>
 
@@ -119,7 +119,7 @@ jobs:
 
 <br>
 
-#### `create-release.yml:` 
+#### `create-release.yml:`
 
 This workflow uses [google-github-actions/release-please-action](https://github.com/google-github-actions/release-please-action) to create automated releases based on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
@@ -347,7 +347,7 @@ Composite Actions are a powerful feature of GitHub Actions that allow you to cre
 
 #### `composer/install:`
 
-This action installs dependencies with Composer based on the specified dependency level (`lowest`, `locked`, `highest`). It's designed to be flexible, allowing you to specify the working directory for the Composer command. 
+This action installs dependencies with Composer based on the specified dependency level (`lowest`, `locked`, `highest`). It's designed to be flexible, allowing you to specify the working directory for the Composer command.
 
 Here is an example of how to use this action in your existing workfow:
 
@@ -453,6 +453,38 @@ jobs:
 ```
 
 <br>
+
+#### `phive/install:`
+
+This action installs dependencies with [Phive](https://github.com/phar-io/phive), the [Phar Installer](https://phar.io), based on the specified `PHIVE_HOME` directory and a list of trusted `GPG keys`. It's designed to be flexible, allowing you to specify the `PHIVE_HOME directory` and the `GPG keys` to trust for the installation process.
+
+Here is an example of how to use this action in your existing workflow:
+
+```yaml
+---
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+name: 📥 Phive Install
+
+jobs:
+  phive-install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Check out the codebase
+        uses: actions/checkout@v4
+
+      - name: 📥 Install dependencies with Phive
+        uses: wayofdev/gh-actions/actions/phive/install@master
+        with:
+          phive-home: '.build/phive'
+          trust-gpg-keys: '0x033E5F8D801A2F8D'
+```
 
 ## 🤝 License
 
