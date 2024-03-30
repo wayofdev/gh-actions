@@ -106,6 +106,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: 🧪 Test Docker image
+        if: ${{ inputs.image-platform == 'linux/amd64' }}
         run: |
           export IMAGE_TEMPLATE=${{ inputs.image-template }}
           export IMAGE_TAG=${{ inputs.image-namespace }}:${{ inputs.image-template }}-${{ inputs.image-version }}
