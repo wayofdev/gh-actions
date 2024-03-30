@@ -33,6 +33,11 @@ on:  # yamllint disable-line rule:truthy
         required: true
         type: string
         default: latest
+      image-platform:
+        description: The platform of the image
+        required: true
+        type: string
+        default: linux/amd64
     secrets:
       docker-username:
         description: Docker Hub username
@@ -81,19 +86,19 @@ jobs:
       - name: 🖥️ Setup QEMU
         uses: docker/setup-qemu-action@v3
         with:
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ inputs.image-platform }}
 
       - name: 🛠️ Setup docker BuildX
         uses: docker/setup-buildx-action@v3
         with:
           install: true
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ inputs.image-platform }}
 
       - name: 🚀 Build image and push to docker-hub
         uses: docker/build-push-action@v5
         with:
           context: ${{ inputs.image-template-path }}/${{ inputs.image-template }}
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ inputs.image-platform }}
           push: ${{ inputs.push-to-hub == true }}
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=${{ inputs.image-namespace }}:${{ inputs.image-template }}-cache
