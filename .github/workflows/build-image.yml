@@ -83,18 +83,18 @@ jobs:
           username: ${{ secrets.docker-username }}
           password: ${{ secrets.docker-password }}
 
-      - name: 🖥️ Setup QEMU
+      - name: 🖥️ Setup QEMU for "${{ inputs.image-platform }}"
         uses: docker/setup-qemu-action@v3
         with:
           platforms: ${{ inputs.image-platform }}
 
-      - name: 🛠️ Setup docker BuildX
+      - name: 🛠️ Setup docker BuildX for "${{ inputs.image-platform }}"
         uses: docker/setup-buildx-action@v3
         with:
           install: true
           platforms: ${{ inputs.image-platform }}
 
-      - name: 🚀 Build image and push to docker-hub
+      - name: 🚀 Build image and push to docker-hub for "${{ inputs.image-platform }}"
         uses: docker/build-push-action@v5
         with:
           context: ${{ inputs.image-template-path }}/${{ inputs.image-template }}
