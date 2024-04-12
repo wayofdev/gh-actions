@@ -15,10 +15,6 @@ on:  # yamllint disable-line rule:truthy
         required: true
         type: string
         default: master
-      package-name:
-        description: The name of the package to release
-        required: true
-        type: string
     secrets:
       token:
         description: The GitHub token to use when creating the release
@@ -35,23 +31,8 @@ jobs:
         id: release
         with:
           token: ${{ secrets.token }}
-          release-type: node
-          package-name: ${{ inputs.package-name }}
+          config-file: ${{ github.workspace }}/.github/.release-please-config.json
+          manifest-file: ${{ github.workspace }}/.github/.release-please-manifest.json
           target-branch: ${{ inputs.branch }}
-          changelog-types: |
-            [
-              { "type": "feat", "section": "Features", "hidden": false },
-              { "type": "fix", "section": "Bug Fixes", "hidden": false },
-              { "type": "perf", "section": "Performance Improvements", "hidden": false },
-              { "type": "docs", "section": "Documentation", "hidden": false },
-              { "type": "chore", "section": "Miscellaneous", "hidden": false },
-              { "type": "style", "section": "Styles", "hidden": true },
-              { "type": "revert", "section": "Reverts", "hidden": true },
-              { "type": "deps", "section": "Dependencies", "hidden": true },
-              { "type": "refactor", "section": "Code Refactoring", "hidden": true },
-              { "type": "test", "section": "Tests", "hidden": true },
-              { "type": "build", "section": "Build System", "hidden": true },
-              { "type": "ci", "section": "Continuous Integration", "hidden": true }
-            ]
 
 ...
