@@ -1,3 +1,5 @@
+---
+
 name: 'Custom S3 cache'
 description: 'Save and restore cache artifacts from AWS s3 bucket'
 author: Alina Freydina
@@ -14,7 +16,7 @@ inputs:
     description: AWS S3 bucket name to save cache to or restore cache from
     required: true
   cache_key:
-    description: A cache key wich used only to save cache to s3 bucket
+    description: A cache key which used only to save cache to s3 bucket
     required: false
   restore_keys:
     description: 'An ordered list of keys to use for restoring cache from s3 bucket'
@@ -23,12 +25,14 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - name: Run action script
-    run: $GITHUB_ACTION_PATH/cache.sh
-    shell: bash
-    env:
-      INPUT_CACHE_ACTION: "${{ inputs.cache_action }}"
-      INPUT_CACHE_PATH: "${{ inputs.cache_path }}"
-      INPUT_S3_BUCKET_NAME: "${{ inputs.s3_bucket_name }}"
-      INPUT_CACHE_KEY: "${{ inputs.cache_key }}"
-      INPUT_RESTORE_KEYS: "${{ inputs.restore_keys }}"
+    - name: Run action script
+      run: $GITHUB_ACTION_PATH/cache.sh
+      shell: bash
+      env:
+        INPUT_CACHE_ACTION: "${{ inputs.cache_action }}"
+        INPUT_CACHE_PATH: "${{ inputs.cache_path }}"
+        INPUT_S3_BUCKET_NAME: "${{ inputs.s3_bucket_name }}"
+        INPUT_CACHE_KEY: "${{ inputs.cache_key }}"
+        INPUT_RESTORE_KEYS: "${{ inputs.restore_keys }}"
+
+...

@@ -1,3 +1,5 @@
+---
+
 # Documentation References:
 # - Creating a Composite Action: https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
 # - Metadata Syntax for Inputs: https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs
@@ -28,3 +30,5 @@ runs:
         COMPOSER_DETERMINE_ROOT_VERSION_WORKING_DIRECTORY: ${{ inputs.working-directory }}
       run: ${{ github.action_path }}/run.sh
       shell: bash
+
+...

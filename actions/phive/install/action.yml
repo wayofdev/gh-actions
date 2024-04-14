@@ -1,3 +1,5 @@
+---
+
 # Documentation References:
 # - Creating a Composite Action: https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
 # - Metadata Syntax for Inputs: https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs
@@ -39,3 +41,5 @@ runs:
         PHIVE_HOME: ${{ inputs.phive-home }}
       run: phive install --trust-gpg-keys ${{ inputs.trust-gpg-keys }}
       shell: bash
+
+...
