@@ -7,14 +7,13 @@ on:  # yamllint disable-line rule:truthy
     inputs:
       os:
         description: The operating system to run the workflow on
-        required: true
+        required: false
         type: string
         default: ubuntu-latest
       branch:
-        description: The branch to use when creating the release
+        description: 'The branch to use when creating the release, example: master'
         required: true
         type: string
-        default: master
     secrets:
       token:
         description: The GitHub token to use when creating the release

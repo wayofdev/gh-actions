@@ -7,7 +7,7 @@ on:  # yamllint disable-line rule:truthy
     inputs:
       os:
         description: The operating system to run the workflow on
-        required: true
+        required: false
         type: string
         default: ubuntu-latest
       pull-request-number:
@@ -18,7 +18,6 @@ on:  # yamllint disable-line rule:truthy
         description: Auto-merge only if github username matches this value
         required: true
         type: string
-        default: lotyp
       merge-method:
         description: The merge method
         required: false

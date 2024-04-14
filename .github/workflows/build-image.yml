@@ -5,37 +5,33 @@ on:  # yamllint disable-line rule:truthy
     inputs:
       os:
         description: The operating system to run the workflow on
-        required: true
+        required: false
         type: string
         default: ubuntu-latest
       push-to-hub:
         description: Push the image to Docker Hub
-        required: true
+        required: false
         type: boolean
         default: false
       image-namespace:
-        description: The namespace of the image
+        description: 'The namespace of the image, example: wayofdev/php-base'
         required: true
         type: string
-        default: wayofdev/php-base
       image-template-path:
-        description: The path to the template of the image
-        required: false
+        description: 'The path to the template of the image, example: ./dist/base'
+        required: true
         type: string
-        default: ./dist/base
       image-template:
-        description: The template of the image
+        description: 'The template of the image, example: 8.2-fpm-alpine'
         required: true
         type: string
-        default: 8.2-fpm-alpine
       image-version:
-        description: The version of the image
+        description: 'The version of the image, example: latest'
         required: true
         type: string
-        default: latest
       image-platform:
         description: The platform of the image
-        required: true
+        required: false
         type: string
         default: linux/amd64,linux/arm64
     secrets:
