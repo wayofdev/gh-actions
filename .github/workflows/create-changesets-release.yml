@@ -1,5 +1,7 @@
+---
+
 name: Create release or publish to pnpm reusable workflow
-on:
+on:  # yamllint disable-line rule:truthy
   workflow_call:
     inputs:
       os:
@@ -59,3 +61,5 @@ jobs:
           HOME: ${{ github.workspace }}
           GITHUB_TOKEN: ${{ secrets.token }}
           NPM_TOKEN: ${{ secrets.npm_token }}
+
+...

@@ -1,4 +1,5 @@
 ---
+
 name: 🎭 Playwright install
 description: 'Installs the playwright with deps'
 
@@ -57,3 +58,5 @@ runs:
       if: steps.playwright-cache.outputs.cache-matched-key != ${{ steps.playwright-cache-config.outputs.CACHE_KEY }}
       shell: bash
       run: pnpx playwright install --with-deps ${{ inputs.browsers }}
+
+...

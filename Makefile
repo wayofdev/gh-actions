@@ -74,3 +74,14 @@ hooks: ## Install git hooks from pre-commit-config
 	pre-commit install
 	pre-commit autoupdate
 .PHONY: hooks
+
+lint-yaml: ## Lint all yaml files
+	yamllint .
+.PHONY: lint-yaml
+
+#
+# Release
+# ------------------------------------------------------------------------------------
+commit:
+	czg commit --config="./.github/.cz.config.js"
+.PHONY: commit
