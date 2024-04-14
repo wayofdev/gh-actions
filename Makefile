@@ -1,6 +1,7 @@
 NPM_BIN ?= pnpm
 NPM_RUNNER ?= $(NPM_BIN)
 
+#
 # Self documenting Makefile code
 # ------------------------------------------------------------------------------------
 ifneq ($(TERM),)
@@ -24,7 +25,7 @@ else
 	WHITE := ""
 	RST := ""
 endif
-MAKE_LOGFILE = /tmp/gh-actions.log
+MAKE_LOGFILE = /tmp/wayofdev-gh-actions.log
 MAKE_CMD_COLOR := $(BLUE)
 
 default: all
@@ -44,32 +45,16 @@ help: ## Show this menu
 	@echo '    🏢 ${YELLOW}Org                     wayofdev (github.com/wayofdev)${RST}'
 .PHONY: help
 
+#
 # Default action
 # Defines default command when `make` is executed without additional parameters
 # ------------------------------------------------------------------------------------
 all: help
 .PHONY: all
 
-
+#
 # System Actions
 # ------------------------------------------------------------------------------------
-i: ## Install dependencies
-	$(NPM_RUNNER) i
-.PHONY: i
-
-install: i ## Same as `make i`
-.PHONY: install
-
-validate: ## Validate all github action files
-	@echo "Validating github actions..."
-	action-validator .github/workflows/apply-labels.yml
-	action-validator .github/workflows/auto-merge-release.yml
-	action-validator .github/workflows/build-image.yml
-	action-validator .github/workflows/create-arch-diagram.yml
-	action-validator .github/workflows/create-release.yml
-	action-validator .github/workflows/shellcheck.yml
-.PHONY: validate
-
 hooks: ## Install git hooks from pre-commit-config
 	pre-commit install
 	pre-commit autoupdate
@@ -78,6 +63,10 @@ hooks: ## Install git hooks from pre-commit-config
 lint-yaml: ## Lint all yaml files
 	yamllint .
 .PHONY: lint-yaml
+
+lint-actions: ## Lint all github actions
+	docker run --rm -v $(shell pwd):/repo --workdir /repo rhysd/actionlint:latest -color
+.PHONY: lint-actions
 
 #
 # Release

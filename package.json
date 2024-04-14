@@ -1,9 +1,5 @@
 {
     "name": "gh-actions",
     "version": "2.0.0",
-    "private": true,
-    "dependencies": {
-        "@action-validator/core": "0.6.0",
-        "@action-validator/cli": "0.6.0"
-    }
+    "private": true
 }
