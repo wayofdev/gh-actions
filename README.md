@@ -1,22 +1,28 @@
 <br>
 
 <div align="center">
-<img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-light-mode-only.png#gh-light-mode-only">
-<img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-dark-mode-only.png#gh-dark-mode-only">
+<img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-light-mode-only.png#gh-light-mode-only" alt="WayOfDev Logo for light theme">
+<img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-dark-mode-only.png#gh-dark-mode-only" alt="WayOfDev Logo for dark theme">
 </div>
-
 <br>
 
 <br>
 
 <div align="center">
+<a href="https://github.com/wayofdev/gh-actions/actions" target="_blank"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fgh-actions%2Fbadge&style=flat-square"/></a>
 <a href="LICENSE.md"><img src="https://img.shields.io/github/license/wayofdev/gh-actions.svg?style=flat-square&color=blue" alt="Software License"/></a>
+<a href="" target="_blank"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/wayofdev/gh-actions/latest?style=flat-square"></a>
+<a href="https://discord.gg/CE3TcCC5vr" target="_blank"><img alt="Codecov" src="https://img.shields.io/discord/1228506758562058391?style=flat-square&logo=discord&labelColor=7289d9&logoColor=white&color=39456d"></a>
+<a href="https://twitter.com/intent/follow?screen_name=wayofdev" target="_blank"><img src="https://img.shields.io/twitter/follow/wayofdev.svg?style=flat-square&logo=x&color=6e7781"></a>
 </div>
+
 <br>
 
-# Shared Github Actions
+# Shared GitHub Actions
 
-This repository is a collection of reusable GitHub Actions workflows and composite actions, specifically designed for use in Wayofdev projects. These tools encapsulate common and repetitive tasks, allowing for easy integration into multiple projects. This approach not only reduces the need to rewrite code but also ensures standardized operations across all Wayofdev repositories.
+This repository is a collection of [reusable workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows) and [composite actions](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action), specifically designed for use in [wayofdev](https://github.com/wayofdev) projects.
+
+These tools encapsulate common and repetitive tasks, allowing for easy integration into multiple projects. This approach not only reduces the need to rewrite code but also ensures standardized operations across all Wayofdev repositories.
 
 Learn more about:
 
@@ -27,17 +33,19 @@ Learn more about:
 
 ## 📋 Table of Contents
 
-- [Getting Started](#getting-started)
-- [Workflows](#workflows)
+- [Getting Started](#-getting-started)
+- [Workflows](#-workflows)
   - [Auto Label and Release Management](#-auto-label-and-release-management)
-  - [Docker](#-docker)
-  - [Create Diagrams](#-create-diagrams)
+  - [Docker Workflows](#-docker-workflows)
+  - [Code Architecture](#-code-architecture)
   - [Static Analysis](#-static-analysis)
-- [Composite Actions](#composite-actions)
+- [Composite Actions](#-composite-actions)
   - [Dependency Management](#-dependency-management)
-- [License](#license)
-- [Author Information](#author-information)
-- [Contributing](#want-to-contribute)
+- [License](#-license)
+- [Security Policy](#-security-policy)
+- [Contributing](#-want-to-contribute)
+- [Social Links](#-social-links)
+- [Author Information](#-author-information)
 
 <br>
 
@@ -63,6 +71,9 @@ To use this workflow, set up a `.github/labeler.yml` file with your configuratio
 
 Here is an example of how to use this workflow:
 
+<details>
+<summary><code>.github/workflows/apply-labels.yml</code></summary>
+
 ```yaml
 ---
 
@@ -82,6 +93,10 @@ jobs:
 ...
 ```
 
+</details>
+
+
+
 <br>
 
 #### `auto-merge-release.yml:`
@@ -89,6 +104,9 @@ jobs:
 This workflow automatically merges releases. This workflow utilizes [peter-evans/enable-pull-request-automerge](https://github.com/peter-evans/enable-pull-request-automerge) to auto-merge releases that are created by [googleapis/release-please](https://github.com/googleapis/release-please).
 
 Here is an example of how to use this workflow:
+
+<details>
+<summary><code>.github/workflows/auto-merge-release.yml</code></summary>
 
 ```yaml
 ---
@@ -116,41 +134,11 @@ jobs:
 
 ...
 ```
+</details>
 
 <br>
 
-#### `create-release.yml:`
-
-This workflow uses [google-github-actions/release-please-action](https://github.com/google-github-actions/release-please-action) to create automated releases based on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
-
-Here is an example of how to use this workflow:
-
-```yaml
----
-
-on:  # yamllint disable-line rule:truthy
-  push:
-    branches:
-      - master
-
-name: 📦 Create release
-
-jobs:
-  release:
-    uses: wayofdev/gh-actions/.github/workflows/create-release.yml@master
-    with:
-      os: ubuntu-latest
-      branch: master
-      package-name: docker-php-base
-    secrets:
-      token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-
-...
-```
-
-<br>
-
-### → Docker
+### → Docker Workflows
 
 #### `build-image.yml:`
 
@@ -158,58 +146,12 @@ This workflow builds a docker image and pushes it to the GitHub Container Regist
 
 Example repositories, using this workflow:
 
-* [wayofdev/docker-php-base](https://github.com/wayofdev/docker-php-base)
-* [wayofdev/docker-php-dev](https://github.com/wayofdev/docker-php-dev)
 * [wayofdev/docker-node](https://github.com/wayofdev/docker-node)
 
-**Build image with "latest" tag:**
-
-```yaml
----
-
-on:  # yamllint disable-line rule:truthy
-  workflow_dispatch:
-  pull_request:
-    branches:
-      - master
-
-name: 🚀 Build docker images with latest tag
-
-jobs:
-  prepare:
-    runs-on: "ubuntu-latest"
-    outputs:
-      matrix: ${{ steps.matrix.outputs.matrix }}
-    steps:
-      - name: ⚙️ Generate matrix
-        id: matrix
-        run: |
-          echo 'matrix={
-            "os_name": ["alpine"],
-            "php_version": ["8.1", "8.2"],
-            "php_type": ["fpm", "cli", "supervisord"]
-          }' | tr -d '\n' >> $GITHUB_OUTPUT
-
-  build:
-    needs: prepare
-    strategy:
-      matrix: ${{ fromJson(needs.prepare.outputs.matrix )}}
-    uses: wayofdev/gh-actions/.github/workflows/build-image.yml@master
-    with:
-      os: "ubuntu-latest"
-      push-to-hub: true
-      image-namespace: "wayofdev/php-base"
-      image-template-path: "./dist/base"
-      image-template: ${{ matrix.php_version }}-${{ matrix.php_type }}-${{ matrix.os_name }}
-      image-version: latest
-    secrets:
-      docker-username: ${{ secrets.DOCKER_USERNAME }}
-      docker-password: ${{ secrets.DOCKER_TOKEN }}
-
-...
-```
-
 **Build image with "release" tag:**
+
+<details>
+<summary><code>.github/workflows/build-release.yml</code></summary>
 
 ```yaml
 ---
@@ -262,10 +204,11 @@ jobs:
 
 ...
 ```
+</details>
 
 <br>
 
-### → Create Diagrams
+### → Code Architecture
 
 #### `create-arch-diagram.yml:`
 
@@ -274,6 +217,9 @@ This workflow leverages the [codesee-io/codesee-action](https://github.com/Codes
 CodeSee is an open-source tool that helps visualize your codebase and its dependencies, making it easier for new contributors to understand the project or for maintaining a clear view of your project's architecture over time.
 
 Here is an example of how to use this workflow:
+
+<details>
+<summary><code>.github/workflows/create-arch-diagram.yml</code></summary>
 
 ```yaml
 ---
@@ -303,6 +249,7 @@ jobs:
 
 ...
 ```
+</details>
 
 <br>
 
@@ -313,6 +260,9 @@ jobs:
 This workflow uses [redhat-plumbers-in-action/differential-shellcheck](https://github.com/redhat-plumbers-in-action/differential-shellcheck) to run shell script analysis.
 
 Here is an example of how to use this workflow:
+
+<details>
+<summary><code>.github/workflows/shellcheck.yml</code></summary>
 
 ```yaml
 ---
@@ -336,12 +286,17 @@ jobs:
 
 ...
 ```
+</details>
 
 <br>
 
 ## ⚡️ Composite Actions
 
-Composite Actions are a powerful feature of GitHub Actions that allow you to create reusable actions using a combination of other actions, shell commands, or both. This enables you to encapsulate a sequence of steps into a single action, making your workflows more modular, easier to maintain, and reducing duplication across your projects. Composite Actions can accept inputs and use outputs, making them highly flexible and adaptable to various use cases.
+Composite Actions are a powerful feature of GitHub Actions that allow you to create reusable actions using a combination of other actions, shell commands, or both.
+
+This enables you to encapsulate a sequence of steps into a single action, making your workflows more modular, easier to maintain, and reducing duplication across your projects.
+
+Composite Actions can accept inputs and use outputs, making them highly flexible and adaptable to various use cases.
 
 ### → Dependency Management
 
@@ -349,7 +304,10 @@ Composite Actions are a powerful feature of GitHub Actions that allow you to cre
 
 This action installs dependencies with Composer based on the specified dependency level (`lowest`, `locked`, `highest`). It's designed to be flexible, allowing you to specify the working directory for the Composer command.
 
-Here is an example of how to use this action in your existing workfow:
+Here is an example of how to use this action in your existing workflow:
+
+<details>
+<summary><code>.github/workflows/integrate.yml</code></summary>
 
 ```yaml
 ---
@@ -384,6 +342,7 @@ jobs:
           dependencies: ${{ matrix.dependencies }}
           working-directory: '.'
 ```
+</details>
 
 <br>
 
@@ -392,6 +351,9 @@ jobs:
 This action determines the Composer cache directory and exports it as `COMPOSER_CACHE_DIR` environment variable. It allows you to specify the working directory for the Composer command to determine the cache directory.
 
 Here is an example of how to use this action in your existing workflow:
+
+<details>
+<summary><code>.github/workflows/integrate.yml</code></summary>
 
 ```yaml
 ---
@@ -417,6 +379,7 @@ jobs:
         with:
           working-directory: '.'
 ```
+</details>
 
 <br>
 
@@ -425,6 +388,9 @@ jobs:
 This action determines the Composer root version based on the specified branch and exports it as `COMPOSER_ROOT_VERSION` environment variable. It's designed to be flexible, allowing you to specify both the branch and the working directory for the Composer command to determine the root version.
 
 Here is an example of how to use this action in your existing workflow:
+
+<details>
+<summary><code>.github/workflows/integrate.yml</code></summary>
 
 ```yaml
 ---
@@ -451,6 +417,7 @@ jobs:
           branch: master
           working-directory: '.'
 ```
+</details>
 
 <br>
 
@@ -459,6 +426,10 @@ jobs:
 This action installs dependencies with [Phive](https://github.com/phar-io/phive), the [Phar Installer](https://phar.io), based on the specified `PHIVE_HOME` directory and a list of trusted `GPG keys`. It's designed to be flexible, allowing you to specify the `PHIVE_HOME directory` and the `GPG keys` to trust for the installation process.
 
 Here is an example of how to use this action in your existing workflow:
+
+
+<details>
+<summary><code>.github/workflows/integrate.yml</code></summary>
 
 ```yaml
 ---
@@ -485,6 +456,80 @@ jobs:
           phive-home: '.build/phive'
           trust-gpg-keys: '0x033E5F8D801A2F8D'
 ```
+</details>
+
+<br>
+
+#### `pnpm/install:`
+
+This action installs mono-repository dependencies using [PNPM](https://pnpm.io/). It's designed to efficiently handle dependencies in a mono-repository setup, enabling corepack support and caching node modules to speed up builds.
+
+Here is an example of how to use this action in your existing workflow:
+
+<details>
+<summary><code>.github/workflows/integrate.yml</code></summary>
+
+```yaml
+---
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - 'apps/web/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'pnpm*'
+      - '.github/**'
+      - 'tsconfig.base.json'
+
+name: 🔍 Continuous Integration for Web App
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Check out the codebase
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: 📥 Install mono-repository dependencies
+        uses: wayofdev/gh-actions/actions/pnpm-install@master
+        with:
+          enable-corepack: true
+          cache-node-modules: true
+
+...
+```
+</details>
+
+For details, see `actions/pnpm-install/action.yaml`.
+
+**Inputs**
+
+- `cwd`, optional: Changes node's `process.cwd()` if the project is not located on the root. Default to `process.cwd()`.
+- `enable-corepack`, optional: Enable corepack. Default to `false`.
+- `cache-prefix`, optional: Add a specific cache-prefix. Default to `default`.
+- `cache-node-modules`, optional: Cache node_modules, which might speed up the link step. Default to `false`.
+
+**Outputs**
+
+- None
+
+**Side Effects**
+
+- This action might create or use caches for `node_modules` based on the `cache-node-modules` and `cache-prefix` settings, potentially affecting subsequent steps in the GitHub Actions workflow.
+
+<br>
 
 ## 🤝 License
 
@@ -492,20 +537,44 @@ jobs:
 
 <br>
 
-## 🙆🏼‍♂️ Author Information
+## 🔒 Security Policy
 
-This repository was created in **2023** by [lotyp / wayofdev](https://github.com/wayofdev).
+This project has a [security policy](.github/SECURITY.md).
 
 <br>
 
 ## 🙌 Want to Contribute?
 
-Thank you for considering contributing to the wayofdev community!
-We are open to all kinds of contributions. If you want to:
+Thank you for considering contributing to the wayofdev community! We are open to all kinds of contributions. If you want to:
 
 - 🤔 Suggest a feature
 - 🐛 Report an issue
 - 📖 Improve documentation
 - 👨‍💻 Contribute to the code
+
+You are more than welcome. Before contributing, kindly check our [contribution guidelines](.github/CONTRIBUTING.md).
+
+<br>
+
+## 🌐 Social Links
+
+- **Twitter:** Follow our organization [@wayofdev](https://twitter.com/intent/follow?screen_name=wayofdev) and the author [@wlotyp](https://twitter.com/intent/follow?screen_name=wlotyp).
+- **Discord:** Join our community on [Discord](https://discord.gg/CE3TcCC5vr).
+
+<br>
+
+## 🙆🏼‍♂️ Author Information
+
+Created in **2023** by [lotyp](https://github.com/wayofdev) @ [wayofdev](https://github.com/wayofdev)
+
+<br>
+
+## 🧱 Useful Resources
+
+* [Composite Actions vs Reusable Workflows: what is the difference?](https://dev.to/n3wt0n/composite-actions-vs-reusable-workflows-what-is-the-difference-github-actions-11kd)
+
+* [ergebnis/.github](https://github.com/ergebnis/.github) — Shareable actions of the [@ergebnis](https://github.com/ergebnis) organization.
+
+* [skills/reusable-workflows](https://github.com/skills/reusable-workflows) — Reusable workflow examples
 
 <br>

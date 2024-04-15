@@ -1,6 +1,18 @@
-NPM_BIN ?= pnpm
-NPM_RUNNER ?= $(NPM_BIN)
+# Docker binary to use, when executing docker tasks
+DOCKER ?= docker
 
+YAML_LINT_RUNNER ?= $(DOCKER) run --rm $$(tty -s && echo "-it" || echo) \
+	-v $(shell pwd):/data \
+	cytopia/yamllint:latest \
+	-f colored .
+
+ACTION_LINT_RUNNER ?= $(DOCKER) run --rm $$(tty -s && echo "-it" || echo) \
+	-v $(shell pwd):/repo \
+	 --workdir /repo \
+	 rhysd/actionlint:latest \
+	 -color
+
+#
 # Self documenting Makefile code
 # ------------------------------------------------------------------------------------
 ifneq ($(TERM),)
@@ -24,7 +36,7 @@ else
 	WHITE := ""
 	RST := ""
 endif
-MAKE_LOGFILE = /tmp/gh-actions.log
+MAKE_LOGFILE = /tmp/wayofdev-gh-actions.log
 MAKE_CMD_COLOR := $(BLUE)
 
 default: all
@@ -44,40 +56,34 @@ help: ## Show this menu
 	@echo '    🏢 ${YELLOW}Org                     wayofdev (github.com/wayofdev)${RST}'
 .PHONY: help
 
+.EXPORT_ALL_VARIABLES:
+
+#
 # Default action
 # Defines default command when `make` is executed without additional parameters
 # ------------------------------------------------------------------------------------
 all: help
 .PHONY: all
 
-
-# System Actions
+#
+# Code Quality, Git, Linting
 # ------------------------------------------------------------------------------------
-i: ## Install dependencies
-	$(NPM_RUNNER) i
-.PHONY: i
-
-install: i ## Same as `make i`
-.PHONY: install
-
-validate: ## Validate all github action files
-	@echo "Validating github actions..."
-	action-validator .github/workflows/apply-labels.yml
-	action-validator .github/workflows/auto-merge-release.yml
-	action-validator .github/workflows/build-image.yml
-	action-validator .github/workflows/create-arch-diagram.yml
-	action-validator .github/workflows/create-release.yml
-	action-validator .github/workflows/shellcheck.yml
-.PHONY: validate
-
 hooks: ## Install git hooks from pre-commit-config
 	pre-commit install
+	pre-commit install --hook-type commit-msg
 	pre-commit autoupdate
 .PHONY: hooks
 
+lint: lint-yaml lint-actions ## Lint all files
+.PHONY: lint
+
 lint-yaml: ## Lint all yaml files
-	yamllint .
+	@$(YAML_LINT_RUNNER)
 .PHONY: lint-yaml
+
+lint-actions: ## Lint all github actions
+	@$(ACTION_LINT_RUNNER)
+.PHONY: lint-actions
 
 #
 # Release
