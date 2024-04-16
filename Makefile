@@ -42,11 +42,9 @@ MAKE_CMD_COLOR := $(BLUE)
 default: all
 
 help: ## Show this menu
-	echo ${MAKEFILE_LIST}
-
 	@echo 'Management commands for package:'
 	@echo 'Usage:'
-	@echo '    ${MAKE_CMD_COLOR}make${RST}                       Shows this help message'
+	@echo '    ${MAKE_CMD_COLOR}make${RST}                       Installs pre-commit hooks and does linting'
 	@grep -E '^[a-zA-Z_0-9%-]+:.*?## .*$$' Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "    ${MAKE_CMD_COLOR}make %-21s${RST} %s\n", $$1, $$2}'
 	@echo
 	@echo '    📑 Logs are stored in      $(MAKE_LOGFILE)'
@@ -54,6 +52,7 @@ help: ## Show this menu
 	@echo '    📦 Package                 gh-actions (github.com/wayofdev/gh-actions)'
 	@echo '    🤠 Author                  Andrij Orlenko (github.com/lotyp)'
 	@echo '    🏢 ${YELLOW}Org                     wayofdev (github.com/wayofdev)${RST}'
+	@echo
 .PHONY: help
 
 .EXPORT_ALL_VARIABLES:
@@ -62,7 +61,7 @@ help: ## Show this menu
 # Default action
 # Defines default command when `make` is executed without additional parameters
 # ------------------------------------------------------------------------------------
-all: help
+all: hooks lint
 .PHONY: all
 
 #
