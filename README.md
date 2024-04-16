@@ -4,6 +4,7 @@
 <img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-light-mode-only.png#gh-light-mode-only" alt="WayOfDev Logo for light theme">
 <img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-dark-mode-only.png#gh-dark-mode-only" alt="WayOfDev Logo for dark theme">
 </div>
+
 <br>
 
 <br>
@@ -13,7 +14,7 @@
 <a href="LICENSE.md"><img src="https://img.shields.io/github/license/wayofdev/gh-actions.svg?style=flat-square&color=blue" alt="Software License"/></a>
 <a href="" target="_blank"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/wayofdev/gh-actions/latest?style=flat-square"></a>
 <a href="https://discord.gg/CE3TcCC5vr" target="_blank"><img alt="Codecov" src="https://img.shields.io/discord/1228506758562058391?style=flat-square&logo=discord&labelColor=7289d9&logoColor=white&color=39456d"></a>
-<a href="https://twitter.com/intent/follow?screen_name=wayofdev" target="_blank"><img src="https://img.shields.io/twitter/follow/wayofdev.svg?style=flat-square&logo=x&color=6e7781"></a>
+<a href="https://twitter.com/intent/follow?screen_name=wayofdev" target="_blank"><img alt="Follow on Twitter" src="https://img.shields.io/twitter/follow/wayofdev.svg?style=flat-square&logo=x&color=6e7781"></a>
 </div>
 
 <br>
@@ -24,34 +25,50 @@ This repository is a collection of [reusable workflows](https://docs.github.com/
 
 These tools encapsulate common and repetitive tasks, allowing for easy integration into multiple projects. This approach not only reduces the need to rewrite code but also ensures standardized operations across all Wayofdev repositories.
 
-Learn more about:
-
-- [Reusing Workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
-- [Creating Composite Actions](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action)
-
 <br>
 
 ## 📋 Table of Contents
 
 - [Getting Started](#-getting-started)
+- [Composite Actions](#-composite-actions)
 - [Workflows](#-workflows)
   - [Auto Label and Release Management](#-auto-label-and-release-management)
   - [Docker Workflows](#-docker-workflows)
   - [Code Architecture](#-code-architecture)
   - [Static Analysis](#-static-analysis)
-- [Composite Actions](#-composite-actions)
-  - [Dependency Management](#-dependency-management)
 - [License](#-license)
 - [Security Policy](#-security-policy)
 - [Contributing](#-want-to-contribute)
 - [Social Links](#-social-links)
 - [Author Information](#-author-information)
+- [Useful Resources](#-useful-resources)
 
 <br>
 
 ## 🚀 Getting Started
 
 To use these workflows and actions, reference them directly from your project's workflows. Detailed instructions for each are provided below.
+
+<br>
+
+## ⚡️ Composite Actions
+
+Composite Actions are a powerful feature of GitHub Actions that allow you to create reusable actions using a combination of other actions, shell commands, or both.
+
+This enables you to encapsulate a sequence of steps into a single action, making your workflows more modular, easier to maintain, and reducing duplication across your projects.
+
+Composite Actions can accept inputs and use outputs, making them highly flexible and adaptable to various use cases.
+
+Check each action's README file for detailed instructions on how to use it.
+
+| **Action**                                                                                 | **Description**                                                                                    |
+|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| [`actions/composer/get-cache-directory`](./actions/composer/get-cache-directory/README.md) | Gets the Composer cache directory path and exports it as env variable.                             |
+| [`actions/composer/get-root-version`](./actions/composer/get-root-version/README.md)       | determines the Composer root version based on the specified branch and exports it as env variable. |
+| [`actions/composer/install`](./actions/composer/install/README.md)                         | Installs dependencies with Composer based on the specified dependency level.                       |
+| [`actions/phive/install`](./actions/phive/install/README.md)                               | Install dependencies with [Phive](https://phar.io).                                                |
+| [`actions/playwright/install`](./actions/playwright/install/README.md)                     | Installs [Playwright](https://playwright.dev/) along with its dependencies.                        |
+| [`actions/pnpm/install`](./actions/pnpm/install/README.md)                                 | Installs mono-repository dependencies using [PNPM](https://pnpm.io/).                              |
 
 <br>
 
@@ -94,7 +111,29 @@ jobs:
 ```
 
 </details>
+<details>
+<summary><code>.github/labeler.yml</code></summary>
 
+```yaml
+---
+
+"type: bug":
+    - head-branch: ['^bug', '^fix', 'bug', 'fix']
+
+"type: enhancement":
+    - head-branch: ['^feature', '^feat', 'feature']
+
+"type: documentation":
+    - changed-files:
+          - any-glob-to-any-file: ['assets/**/*', '.github/*', './*.md']
+
+"type: maintenance":
+    - changed-files:
+          - any-glob-to-any-file: ['tests/**/*', '.github/workflows/*']
+
+...
+```
+</details>
 
 
 <br>
@@ -142,7 +181,7 @@ jobs:
 
 #### `build-image.yml:`
 
-This workflow builds a docker image and pushes it to the GitHub Container Registry.
+This workflow builds a docker image and pushes it to the Docker Container Registry.
 
 Example repositories, using this workflow:
 
@@ -290,247 +329,6 @@ jobs:
 
 <br>
 
-## ⚡️ Composite Actions
-
-Composite Actions are a powerful feature of GitHub Actions that allow you to create reusable actions using a combination of other actions, shell commands, or both.
-
-This enables you to encapsulate a sequence of steps into a single action, making your workflows more modular, easier to maintain, and reducing duplication across your projects.
-
-Composite Actions can accept inputs and use outputs, making them highly flexible and adaptable to various use cases.
-
-### → Dependency Management
-
-#### `composer/install:`
-
-This action installs dependencies with Composer based on the specified dependency level (`lowest`, `locked`, `highest`). It's designed to be flexible, allowing you to specify the working directory for the Composer command.
-
-Here is an example of how to use this action in your existing workflow:
-
-<details>
-<summary><code>.github/workflows/integrate.yml</code></summary>
-
-```yaml
----
-
-on:  # yamllint disable-line rule:truthy
-  push:
-    branches:
-      - master
-  pull_request:
-
-name: 📥 Composer Install
-
-jobs:
-  composer-install:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os:
-          - "ubuntu-latest"
-        php-version:
-          - "8.2"
-        dependencies:
-          - "locked"
-
-    steps:
-      - name: 📦 Check out the codebase
-        uses: actions/checkout@v4
-
-      - name: 📥 Install "${{ matrix.dependencies }}" dependencies
-        uses: wayofdev/gh-actions/actions/composer/install@master
-        with:
-          dependencies: ${{ matrix.dependencies }}
-          working-directory: '.'
-```
-</details>
-
-<br>
-
-#### `composer/get-cache-directory:`
-
-This action determines the Composer cache directory and exports it as `COMPOSER_CACHE_DIR` environment variable. It allows you to specify the working directory for the Composer command to determine the cache directory.
-
-Here is an example of how to use this action in your existing workflow:
-
-<details>
-<summary><code>.github/workflows/integrate.yml</code></summary>
-
-```yaml
----
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-
-name: 🗂 Get Composer Cache Directory
-
-jobs:
-  get-composer-cache-dir:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 📦 Check out the codebase
-        uses: actions/checkout@v4
-
-      - name: 🔍 Get Composer Cache Directory
-        uses: wayofdev/gh-actions/actions/composer/get-cache-directory@master
-        with:
-          working-directory: '.'
-```
-</details>
-
-<br>
-
-#### `composer/get-root-version:`
-
-This action determines the Composer root version based on the specified branch and exports it as `COMPOSER_ROOT_VERSION` environment variable. It's designed to be flexible, allowing you to specify both the branch and the working directory for the Composer command to determine the root version.
-
-Here is an example of how to use this action in your existing workflow:
-
-<details>
-<summary><code>.github/workflows/integrate.yml</code></summary>
-
-```yaml
----
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-
-name: 🎯 Get Composer Root Version
-
-jobs:
-  get-composer-root-version:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 📦 Check out the codebase
-        uses: actions/checkout@v4
-
-      - name: 🎯 Get Composer Root Version
-        uses: wayofdev/gh-actions/actions/composer/get-root-version@master
-        with:
-          branch: master
-          working-directory: '.'
-```
-</details>
-
-<br>
-
-#### `phive/install:`
-
-This action installs dependencies with [Phive](https://github.com/phar-io/phive), the [Phar Installer](https://phar.io), based on the specified `PHIVE_HOME` directory and a list of trusted `GPG keys`. It's designed to be flexible, allowing you to specify the `PHIVE_HOME directory` and the `GPG keys` to trust for the installation process.
-
-Here is an example of how to use this action in your existing workflow:
-
-
-<details>
-<summary><code>.github/workflows/integrate.yml</code></summary>
-
-```yaml
----
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-
-name: 📥 Phive Install
-
-jobs:
-  phive-install:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 📦 Check out the codebase
-        uses: actions/checkout@v4
-
-      - name: 📥 Install dependencies with Phive
-        uses: wayofdev/gh-actions/actions/phive/install@master
-        with:
-          phive-home: '.build/phive'
-          trust-gpg-keys: '0x033E5F8D801A2F8D'
-```
-</details>
-
-<br>
-
-#### `pnpm/install:`
-
-This action installs mono-repository dependencies using [PNPM](https://pnpm.io/). It's designed to efficiently handle dependencies in a mono-repository setup, enabling corepack support and caching node modules to speed up builds.
-
-Here is an example of how to use this action in your existing workflow:
-
-<details>
-<summary><code>.github/workflows/integrate.yml</code></summary>
-
-```yaml
----
-
-on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-    paths:
-      - 'apps/web/**'
-      - 'packages/**'
-      - 'package.json'
-      - 'pnpm*'
-      - '.github/**'
-      - 'tsconfig.base.json'
-
-name: 🔍 Continuous Integration for Web App
-
-jobs:
-  integration:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 📦 Check out the codebase
-        uses: actions/checkout@v4
-
-      - name: ⚙️ Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: 'https://registry.npmjs.org/'
-
-      - name: 📥 Install mono-repository dependencies
-        uses: wayofdev/gh-actions/actions/pnpm-install@master
-        with:
-          enable-corepack: true
-          cache-node-modules: true
-
-...
-```
-</details>
-
-For details, see `actions/pnpm-install/action.yaml`.
-
-**Inputs**
-
-- `cwd`, optional: Changes node's `process.cwd()` if the project is not located on the root. Default to `process.cwd()`.
-- `enable-corepack`, optional: Enable corepack. Default to `false`.
-- `cache-prefix`, optional: Add a specific cache-prefix. Default to `default`.
-- `cache-node-modules`, optional: Cache node_modules, which might speed up the link step. Default to `false`.
-
-**Outputs**
-
-- None
-
-**Side Effects**
-
-- This action might create or use caches for `node_modules` based on the `cache-node-modules` and `cache-prefix` settings, potentially affecting subsequent steps in the GitHub Actions workflow.
-
-<br>
-
 ## 🤝 License
 
 [![Licence](https://img.shields.io/github/license/wayofdev/gh-actions?style=for-the-badge&color=blue)](./LICENSE)
@@ -563,7 +361,7 @@ You are more than welcome. Before contributing, kindly check our [contribution g
 
 <br>
 
-## 🙆🏼‍♂️ Author Information
+## 👨‍💻 Author Information
 
 Created in **2023** by [lotyp](https://github.com/wayofdev) @ [wayofdev](https://github.com/wayofdev)
 
