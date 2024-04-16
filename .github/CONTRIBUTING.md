@@ -100,6 +100,18 @@ $ make lint-yaml
 
 by default, [`cytopia/yamllint`](https://github.com/cytopia/docker-yamllint) Docker image will be used to run linter.
 
+### → Action Lint
+
+We use [`actionlint`](https://github.com/rhysd/actionlint) to enforce coding standards in GitHub Actions workflows.
+
+To lint GitHub Actions workflows run:
+
+```bash
+$ make lint-actions
+```
+
+by default, [`rhysd/actionlint`](https://hub.docker.com/r/rhysd/actionlint/tags) Docker image will be used to run linter.
+
 <br>
 
 ## 📦 Pre-commit Hooks
