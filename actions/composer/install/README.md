@@ -38,7 +38,7 @@ on:  # yamllint disable-line rule:truthy
       - master
   pull_request:
 
-name: 📥 Composer Install
+name: 🔍 Continuous integration
 
 jobs:
   integrate:
@@ -46,19 +46,21 @@ jobs:
     strategy:
       matrix:
         os:
-          - "ubuntu-latest"
+          - ubuntu-latest
         php-version:
-          - "8.1"
-          - "8.2"
-          - "8.3"
+          - '8.1'
+          - '8.2'
+          - '8.3'
         dependencies:
-          - "lowest"
-          - "locked"
-          - "highest"
+          - lowest
+          - locked
+          - highest
 
     steps:
       - name: 📦 Check out the codebase
         uses: actions/checkout@v4
+
+      # ...
 
       - name: 📥 Install "${{ matrix.dependencies }}" dependencies
         uses: wayofdev/gh-actions/actions/composer/install@master
@@ -66,10 +68,14 @@ jobs:
           dependencies: ${{ matrix.dependencies }}
           working-directory: '.'
 
+      # ...
+
 ...
 ```
 
 For details, see [`actions/composer/install/action.yaml`](actions/composer/install/action.yaml).
+
+Real-world examples can be found in the [`wayofdev/laravel-package-tpl`](https://github.com/wayofdev/laravel-package-tpl/blob/master/.github/workflows/integrate.yml) repository.
 
 <br>
 

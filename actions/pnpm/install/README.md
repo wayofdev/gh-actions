@@ -42,7 +42,7 @@ on:
       - master
   pull_request:
 
-name: 📦 PNPM Install
+name: 🔍 Continuous integration for web app
 
 jobs:
   build:
@@ -52,17 +52,24 @@ jobs:
       - name: 📦 Check out the codebase
         uses: actions/checkout@v4
 
-      - name: ⚙️ Setup PNPM
+     # ...
+
+      - name: ⚙️ Setup PNPM mono-repository
         uses: wayofdev/gh-actions/actions/pnpm/install@master
         with:
           cwd: '.'
-          enable-corepack: 'true'
+          enable-corepack: true
           cache-prefix: 'ci-build'
-          cache-node-modules: 'true'
+          cache-node-modules: true
+
+    # ...
+
 ...
 ```
 
 For details, see [`actions/pnpm/install/action.yml`](./action.yml).
+
+Real-world examples can be found in the [`wayofdev/next-starter-tpl`](https://github.com/wayofdev/next-starter-tpl/blob/master/.github/workflows/ci-apps-web.yml) repository.
 
 <br>
 

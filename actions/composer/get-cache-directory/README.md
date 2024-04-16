@@ -35,25 +35,30 @@ on:
       - master
   pull_request:
 
-name: 🗂 Get Composer Cache Directory
+name: 🔍 Continuous integration
 
 jobs:
   integrate:
     runs-on: ubuntu-latest
-
     steps:
       - name: 📦 Check out the codebase
         uses: actions/checkout@v4
+
+      # ...
 
       - name: 🎯 Get Composer Cache Directory
         uses: wayofdev/gh-actions/actions/composer/get-cache-directory@master
         with:
           working-directory: '.'
 
+      # ...
+
 ...
 ```
 
 For details, see [`actions/composer/get-cache-directory/action.yml`](./action.yml) file.
+
+Real-world examples can be found in the [`wayofdev/laravel-package-tpl`](https://github.com/wayofdev/laravel-package-tpl/blob/master/.github/workflows/integrate.yml) repository.
 
 <br>
 

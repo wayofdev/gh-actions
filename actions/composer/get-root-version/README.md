@@ -35,15 +35,16 @@ on:
       - master
   pull_request:
 
-name: 🎯 Get Composer Root Version
+name: 🔍 Continuous integration
 
 jobs:
   integrate:
     runs-on: ubuntu-latest
-
     steps:
       - name: 📦 Check out the codebase
         uses: actions/checkout@v4
+
+      # ...
 
       - name: 🎯 Get Composer Root Version
         uses: wayofdev/gh-actions/actions/composer/get-root-version@master
@@ -51,10 +52,14 @@ jobs:
           branch: master
           working-directory: '.'
 
+      # ...
+
 ...
 ```
 
 For details, see [`actions/composer/get-root-version/action.yml`](./action.yml).
+
+Real-world examples can be found in the [`wayofdev/laravel-package-tpl`](https://github.com/wayofdev/laravel-package-tpl/blob/master/.github/workflows/integrate.yml) repository.
 
 <br>
 

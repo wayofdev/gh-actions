@@ -32,13 +32,13 @@ Create a new workflow file, for example, `.github/workflows/integrate.yml`, and 
 ```yaml
 ---
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - master
   pull_request:
 
-name: 📥 Phive Install
+name: 🔍 Continuous integration
 
 jobs:
   integrate:
@@ -48,16 +48,22 @@ jobs:
       - name: 📦 Check out the codebase
         uses: actions/checkout@v4
 
+      # ...
+
       - name: 📥 Install dependencies with Phive
         uses: wayofdev/gh-actions/actions/phive/install@master
         with:
           phive-home: '.build/phive'
           trust-gpg-keys: '0x033E5F8D801A2F8D'
 
+      # ...
+
 ...
 ```
 
 For details, see [`actions/phive/install/action.yml`](./action.yml).
+
+Real-world examples can be found in the [`wayofdev/laravel-package-tpl`](https://github.com/wayofdev/laravel-package-tpl/blob/master/.github/workflows/integrate.yml) repository.
 
 <br>
 

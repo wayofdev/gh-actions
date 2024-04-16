@@ -40,7 +40,7 @@ on:
       - master
   pull_request:
 
-name: 🎭 Playwright Setup
+name: 🧪 E2E testing for web app
 
 jobs:
   test:
@@ -50,17 +50,23 @@ jobs:
       - name: 📦 Check out the codebase
         uses: actions/checkout@v4
 
-      - name: 🎭 Setup Playwright
+      # ...
+
+      - name: 🎭 Install Playwright
         uses: wayofdev/gh-actions/actions/playwright/install@master
         with:
           playwright-cache-folder: '~/.cache/ms-playwright'
           cache-prefix: 'ci-tests'
           browsers: 'chromium webkit'
 
+      # ...
+
 ...
 ```
 
 For details, see [`actions/playwright/install/action.yml`](https://chat.openai.com/c/action.yml).
+
+Real-world examples can be found in the [`wayofdev/next-starter-tpl`](https://github.com/wayofdev/next-starter-tpl/blob/master/.github/workflows/e2e-apps-web.yml) repository.
 
 <br>
 

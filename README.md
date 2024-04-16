@@ -1,9 +1,12 @@
 <br>
+
 <div align="center">
 <img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-light-mode-only.png#gh-light-mode-only" alt="WayOfDev Logo for light theme">
 <img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-dark-mode-only.png#gh-dark-mode-only" alt="WayOfDev Logo for dark theme">
 </div>
+
 <br>
+
 <br>
 
 <div align="center">
@@ -11,7 +14,7 @@
 <a href="LICENSE.md"><img src="https://img.shields.io/github/license/wayofdev/gh-actions.svg?style=flat-square&color=blue" alt="Software License"/></a>
 <a href="" target="_blank"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/wayofdev/gh-actions/latest?style=flat-square"></a>
 <a href="https://discord.gg/CE3TcCC5vr" target="_blank"><img alt="Codecov" src="https://img.shields.io/discord/1228506758562058391?style=flat-square&logo=discord&labelColor=7289d9&logoColor=white&color=39456d"></a>
-<a href="https://twitter.com/intent/follow?screen_name=wayofdev" target="_blank"><img src="https://img.shields.io/twitter/follow/wayofdev.svg?style=flat-square&logo=x&color=6e7781"></a>
+<a href="https://twitter.com/intent/follow?screen_name=wayofdev" target="_blank"><img alt="Follow on Twitter" src="https://img.shields.io/twitter/follow/wayofdev.svg?style=flat-square&logo=x&color=6e7781"></a>
 </div>
 
 <br>
@@ -58,14 +61,14 @@ Composite Actions can accept inputs and use outputs, making them highly flexible
 
 Check each action's README file for detailed instructions on how to use it.
 
-| **Action**                                                                                            | **Description**                        |
-|-------------------------------------------------------------------------------------------------------|----------------------------------------|
-| [`actions/composer/get-cache-directory/action.yml`](./actions/composer/get-cache-directory/README.md) | Get the Composer cache directory path. |
-| [`actions/composer/get-root-version/action.yml`](./actions/composer/get-root-version/README.md)       | Get the root Composer version.         |
-| [`actions/composer/install/action.yml`](./actions/composer/install/README.md)                         | Install Composer dependencies.         |
-| [`actions/phive/install/action.yml`](./actions/phive/install/README.md)                               | Install dependencies with Phive.       |
-| [`actions/playwright/install/action.yml`](./actions/playwright/install/README.md)                     | Install Playwright.                    |
-| [`actions/pnpm/install/action.yml`](./actions/pnpm/install/README.md)                                 | Install dependencies with PNPM.        |
+| **Action**                                                                                 | **Description**                                                                                    |
+|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| [`actions/composer/get-cache-directory`](./actions/composer/get-cache-directory/README.md) | Gets the Composer cache directory path and exports it as env variable.                             |
+| [`actions/composer/get-root-version`](./actions/composer/get-root-version/README.md)       | determines the Composer root version based on the specified branch and exports it as env variable. |
+| [`actions/composer/install`](./actions/composer/install/README.md)                         | Installs dependencies with Composer based on the specified dependency level.                       |
+| [`actions/phive/install`](./actions/phive/install/README.md)                               | Install dependencies with [Phive](https://phar.io).                                                |
+| [`actions/playwright/install`](./actions/playwright/install/README.md)                     | Installs [Playwright](https://playwright.dev/) along with its dependencies.                        |
+| [`actions/pnpm/install`](./actions/pnpm/install/README.md)                                 | Installs mono-repository dependencies using [PNPM](https://pnpm.io/).                              |
 
 <br>
 
