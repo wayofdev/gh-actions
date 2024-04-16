@@ -42,6 +42,7 @@ These tools encapsulate common and repetitive tasks, allowing for easy integrati
 - [Social Links](#-social-links)
 - [Author Information](#-author-information)
 - [Useful Resources](#-useful-resources)
+- [Contributors](#-contributors)
 
 <br>
 
@@ -51,7 +52,7 @@ To use these workflows and actions, reference them directly from your project's 
 
 <br>
 
-## ⚡️ Composite Actions
+## ⚙️ Composite Actions
 
 Composite Actions are a powerful feature of GitHub Actions that allow you to create reusable actions using a combination of other actions, shell commands, or both.
 
@@ -72,7 +73,7 @@ Check each action's README file for detailed instructions on how to use it.
 
 <br>
 
-## ⚡️ Workflows
+## ⚙️ Workflows
 
 Read more about [reusing workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows).
 
@@ -374,5 +375,11 @@ Created in **2023** by [lotyp](https://github.com/wayofdev) @ [wayofdev](https:/
 * [ergebnis/.github](https://github.com/ergebnis/.github) — Shareable actions of the [@ergebnis](https://github.com/ergebnis) organization.
 
 * [skills/reusable-workflows](https://github.com/skills/reusable-workflows) — Reusable workflow examples
+
+<br>
+
+## 🫡 Contributors
+
+<img align="left" src="https://img.shields.io/github/contributors-anon/wayofdev/gh-actions?style=for-the-badge" alt="Contributors Badge"/>
 
 <br>
