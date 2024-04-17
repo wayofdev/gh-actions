@@ -136,6 +136,7 @@ jobs:
 ```
 </details>
 
+Real-world examples can be found in the [`wayofdev/laravel-package-tpl`](https://github.com/wayofdev/laravel-package-tpl/blob/master/.github/workflows/apply-labels.yml) repository.
 
 <br>
 
@@ -175,6 +176,45 @@ jobs:
 ...
 ```
 </details>
+
+Real-world examples can be found in the [`wayofdev/laravel-package-tpl`](https://github.com/wayofdev/laravel-package-tpl/blob/master/.github/workflows/auto-merge-release.yml) repository.
+
+<br>
+
+#### `create-changesets-release.yml:`
+
+This workflow creates a release based on changesets. This workflow utilizes [changesets/action](https://github.com/changesets/action) to create a release based on changesets.
+
+Here is an example of how to use this workflow:
+
+<details>
+<summary><code>.github/workflows/create-changesets-release.yml</code></summary>
+
+```yaml
+---
+on: # yamllint disable-line rule:truthy
+    push:
+        branches:
+            - master
+
+name: 🦋 Create release or publish to pnpm
+
+jobs:
+    release:
+        uses: wayofdev/gh-actions/.github/workflows/create-changesets-release.yml@master
+        with:
+            node: 18
+            repository: wayofdev/next-starter-tpl
+        secrets:
+            # to trigger other workflows, pass PAT token instead of GITHUB_TOKEN
+            token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+            npm_token: ${{ secrets.NPM_TOKEN }}
+
+...
+```
+</details>
+
+Real-world examples can be found in the [`wayofdev/next-starter-tpl`](https://github.com/wayofdev/next-starter-tpl/blob/master/.github/workflows/create-changesets-release.yml) repository.
 
 <br>
 
@@ -246,6 +286,8 @@ jobs:
 ```
 </details>
 
+Real-world examples can be found in the [`wayofdev/docker-node`](https://github.com/wayofdev/docker-node/blob/master/.github/workflows/build-release.yml) repository.
+
 <br>
 
 ### → Code Architecture
@@ -291,6 +333,8 @@ jobs:
 ```
 </details>
 
+Real-world examples can be found in the [`wayofdev/laravel-package-tpl`](https://github.com/wayofdev/laravel-package-tpl/blob/master/.github/workflows/create-arch-diagram.yml) repository.
+
 <br>
 
 ### → Static Analysis
@@ -327,6 +371,8 @@ jobs:
 ...
 ```
 </details>
+
+Real-world examples can be found in the [`wayofdev/laravel-package-tpl`](https://github.com/wayofdev/laravel-package-tpl/blob/master/.github/workflows/shellcheck.yml) repository.
 
 <br>
 

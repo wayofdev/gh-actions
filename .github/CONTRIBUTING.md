@@ -48,8 +48,22 @@ $ make help
 
 - **Fork the Repository**: Start by forking the repository to your GitHub account.
 - **Create a Branch**: In your fork, create a new branch for your work. Name it appropriately based on the feature, fix, or update you're working on.
-- **Make Your Changes**: Implement your changes, commit them, and push the branch to your fork.
+- **Make Your Changes**: Implement your changes
+- **Update Documentation**: If you've made changes that affect the project's documentation, ensure it is updated.
+- **Run Linters**: Ensure your code passes all linting checks using `make lint`.
+- **Commit Your Changes**: Use the [Conventional Commits](#-commit-message-guidelines) standard for your commit messages. You can use `make commit` to assist in creating commit messages.
+- **Push Your Changes**: Push your branch to your fork on GitHub.
 - **Open a Pull Request**: Submit a pull request to the `master` branch of the original repository. Ensure your PR is focused, addressing a single feature, fix, or improvement.
+
+<br>
+
+## ⚡️ Continuous Integration with GitHub Actions
+
+Our project employs [GitHub Actions](https://github.com/features/actions) for continuous integration, ensuring code quality and reliability. We encourage contributors to review our workflow configurations to understand the CI processes:
+
+- [`workflows/integrate.yaml`](workflows/integrate.yaml)
+- [`workflows/triage.yml`](workflows/triage.yml)
+- [`workflows/release.yml`](workflows/create-arch-diagram.yml)
 
 <br>
 
@@ -99,6 +113,18 @@ $ make lint-yaml
 ```
 
 by default, [`cytopia/yamllint`](https://github.com/cytopia/docker-yamllint) Docker image will be used to run linter.
+
+### → Action Lint
+
+We use [`actionlint`](https://github.com/rhysd/actionlint) to enforce coding standards in GitHub Actions workflows.
+
+To lint GitHub Actions run:
+
+```bash
+$ make lint-actions
+```
+
+by default, [`rhysd/actionlint`](https://hub.docker.com/r/rhysd/actionlint/tags) Docker image will be used to run linter.
 
 <br>
 
