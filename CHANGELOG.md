@@ -1,5 +1,33 @@
 # Changelog
 
+## [3.0.0](https://github.com/wayofdev/gh-actions/compare/v2.0.0...v3.0.0) (2024-04-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* changes in action directory structure
+
+### Features
+
+* changes in action directory structure ([37f2dec](https://github.com/wayofdev/gh-actions/commit/37f2dece47c3bf8d3d9fac39c016538cda60ec66))
+* refactoring s3 cache action ([75eedec](https://github.com/wayofdev/gh-actions/commit/75eedecc9202c912a181a2727d81c56d15d095c1))
+* switch to rhysd/actionlint action linter ([5a8f0e7](https://github.com/wayofdev/gh-actions/commit/5a8f0e7bf9413b7d42da6b2fdfb4746f8d5e1f99))
+
+
+### Bug Fixes
+
+* Makefile and apply actionlint ([1911f1a](https://github.com/wayofdev/gh-actions/commit/1911f1ac3d64fd118d36d922687ae22389adc0a1))
+
+
+### Documentation
+
+* add actionlint in contributing ([f261935](https://github.com/wayofdev/gh-actions/commit/f261935c2e397744bc4f38262704c1b77993e643))
+* add changesets workflow ([fdb97ac](https://github.com/wayofdev/gh-actions/commit/fdb97ac72dba08e8664dc4cf5d5d849c6211b652))
+* add contributing docs ([3717278](https://github.com/wayofdev/gh-actions/commit/371727831ffcb2e22b7be645df2ae364c6b8bfaa))
+* issue templates ([8c71408](https://github.com/wayofdev/gh-actions/commit/8c71408868d91d4920863de403015b214afdb2c2))
+* update readme ([9519cd0](https://github.com/wayofdev/gh-actions/commit/9519cd017ee5be792a2c4d609daa552d896112aa))
+* updating readme files ([bbcbf86](https://github.com/wayofdev/gh-actions/commit/bbcbf8668a638f3aca34555ff19f01bee9367b18))
+
 ## [2.0.0](https://github.com/wayofdev/gh-actions/compare/v1.0.0...v2.0.0) (2024-04-14)
 
 
