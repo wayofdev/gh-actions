@@ -97,7 +97,7 @@ The action requires the following environment variables to be set:
 name: 🔍 Continuous integration
 
 on:  # yamllint disable-line rule:truthy
-	push:
+  push:
 
 jobs:
   build:
@@ -129,7 +129,7 @@ jobs:
 name: 🔍 Continuous integration
 
 on:  # yamllint disable-line rule:truthy
-	push:
+  push:
 
 jobs:
   build:
@@ -178,7 +178,7 @@ Additionally, you can use arbitrary command output in a cache key, such as a dat
 name: 🔍 Continuous integration
 
 on:  # yamllint disable-line rule:truthy
-	push:
+  push:
 
 jobs:
   build:
