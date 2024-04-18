@@ -49,7 +49,7 @@ jobs:
     runs-on: ${{ inputs.os }}
     steps:
       - name: 📦 Check out the codebase
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        uses: actions/checkout@v4
 
       - name: 🛠️ Install goss and dgoss
         uses: e1himself/goss-installation-action@v1.2.1
@@ -93,7 +93,7 @@ jobs:
       - name: 🚀 Build image and push to docker-hub for "${{ inputs.image-platform }}"
         uses: docker/build-push-action@v5
         with:
-          context: ${{ inputs.image-template-path }}/${{ inputs.image-template }}
+          context: '${{ inputs.image-template-path }}/${{ inputs.image-template }}'
           platforms: ${{ inputs.image-platform }}
           push: ${{ inputs.push-to-hub == true }}
           tags: ${{ steps.meta.outputs.tags }}
@@ -107,3 +107,5 @@ jobs:
           export IMAGE_TEMPLATE=${{ inputs.image-template }}
           export IMAGE_TAG=${{ inputs.image-namespace }}:${{ inputs.image-template }}-${{ inputs.image-version }}
           make test
+
+...

@@ -3,18 +3,18 @@
 set -euo pipefail
 
 function save_cache() {
-    
-    if [[ $(aws s3 ls s3://${S3_BUCKET}/${CACHE_KEY}/ --region $AWS_REGION | head) ]]; then
+
+    if [[ $(aws s3 ls s3://"${S3_BUCKET}"/"${CACHE_KEY}"/ --region "$AWS_REGION" | head) ]]; then
         echo "Cache is already existed for key: ${CACHE_KEY}"
     else
         echo "Saving cache for key ${CACHE_KEY}"
-        
-        tmp_dir="$(mktemp -d)"
-        (cd $CACHE_PATH && tar czf "${tmp_dir}/archive.tgz" ./*) 
-        size="$(ls -lh "${tmp_dir}/archive.tgz" | cut -d ' ' -f 5 )"
 
-        aws s3 cp "${tmp_dir}/archive.tgz" "s3://${S3_BUCKET}/${CACHE_KEY}/archive.tgz" --region $AWS_REGION > /dev/null
-        copy_exit_code=$?
+        tmp_dir="$(mktemp -d)"
+        (cd "$CACHE_PATH" && tar czf "${tmp_dir}/archive.tgz" ./*)
+        local size="$(ls -lh "${tmp_dir}/archive.tgz" | cut -d ' ' -f 5 )"
+
+        aws s3 cp "${tmp_dir}/archive.tgz" "s3://${S3_BUCKET}/${CACHE_KEY}/archive.tgz" --region "$AWS_REGION" > /dev/null
+        local copy_exit_code=$?
         rm -rf "${tmp_dir}"
         echo "Cache size: ${size}"
 
@@ -27,16 +27,16 @@ function save_cache() {
 function restore_cache() {
 
     for key in ${RESTORE_KEYS}; do
-        if [[ $(aws s3 ls s3://${S3_BUCKET}/ --region $AWS_REGION | grep $key | head) ]]; then
-            k=$(aws s3 ls s3://${S3_BUCKET}/ --region $AWS_REGION | grep $key | head -n 1 | awk '{print $2}')
+        if [[ $(aws s3 ls s3://"${S3_BUCKET}"/ --region "$AWS_REGION" | grep "$key" | head) ]]; then
+            local k=$(aws s3 ls s3://"${S3_BUCKET}"/ --region "$AWS_REGION" | grep "$key" | head -n 1 | awk '{print $2}')
             tmp_dir="$(mktemp -d)"
-            mkdir -p $CACHE_PATH
+            mkdir -p "$CACHE_PATH"
 
-            aws s3 cp s3://${S3_BUCKET}/${k//\//}/archive.tgz $tmp_dir/archive.tgz --region $AWS_REGION > /dev/null
-            tar xzf "${tmp_dir}/archive.tgz" -C $CACHE_PATH
-        
+            aws s3 cp s3://"${S3_BUCKET}"/"${k//\//}"/archive.tgz "$tmp_dir"/archive.tgz --region "$AWS_REGION" > /dev/null
+            tar xzf "${tmp_dir}/archive.tgz" -C "$CACHE_PATH"
+
             echo "Restoring cache for key ${key}"
-            du -sm ${CACHE_PATH}/*
+            du -sm "${CACHE_PATH}"/*
             exit 0
         else
             echo "Cache with key $key not found."
