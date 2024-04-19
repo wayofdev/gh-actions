@@ -1,24 +1,23 @@
-<br>
-
 <div align="center">
-<img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-light-mode-only.png#gh-light-mode-only" alt="WayOfDev Logo for light theme">
-<img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-dark-mode-only.png#gh-dark-mode-only" alt="WayOfDev Logo for dark theme">
+<a href="https://cycle-orm.dev" target="_blank">
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://github.com/cycle/.github/blob/main/logo/words-vector-dark.svg?raw=true">
+        <img width="50%" align="center" src="https://github.com/cycle/.github/blob/main/logo/words-vector-light.svg?raw=true">
+    </picture>
+</a>
 </div>
 
 <br>
 
-<br>
-
 <div align="center">
-<a href="https://github.com/wayofdev/gh-actions/actions" target="_blank"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fgh-actions%2Fbadge&style=flat-square"/></a>
-<a href="LICENSE.md" target="_blank"><img src="https://img.shields.io/github/license/wayofdev/gh-actions.svg?style=flat-square&color=blue" alt="Software License"/></a>
-<a href="https://github.com/wayofdev/gh-actions" target="_blank"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/wayofdev/gh-actions/latest?style=flat-square"></a>
-<a href="https://conventionalcommits.org" target="_blank"><img alt="Conventional Commits" src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=flat-square&label=conventional%20commits"></a>
-<a href="https://discord.gg/CE3TcCC5vr" target="_blank"><img alt="Codecov" src="https://img.shields.io/discord/1228506758562058391?style=flat-square&logo=discord&labelColor=7289d9&logoColor=white&color=39456d"></a>
-<a href="https://twitter.com/intent/follow?screen_name=wayofdev" target="_blank"><img alt="Follow on Twitter" src="https://img.shields.io/twitter/follow/wayofdev.svg?style=flat-square&logo=x&color=6e7781"></a>
-</div>
 
-<br>
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fgh-actions%2Fbadge&style=flat-square)](https://github.com/cycle/gh-actions/actions)
+[![Software License](https://img.shields.io/github/license/cycle/gh-actions.svg?style=flat-square&color=blue)](LICENSE.md)
+[![Commits since latest release](https://img.shields.io/github/commits-since/cycle/gh-actions/latest?style=flat-square)](https://github.com/cycle/gh-actions)
+[![Discord](https://img.shields.io/discord/538114875570913290?style=flat-square&logo=discord&labelColor=7289d9&logoColor=white&color=39456d)](https://discord.gg/spiralphp)
+[![Follow on Twitter](https://img.shields.io/twitter/follow/SpiralScout.svg?style=flat-square&logo=x&color=6e7781)](https://twitter.com/intent/follow?screen_name=SpiralScout)
+
+</div>
 
 # Shared GitHub Actions
 
@@ -34,7 +33,6 @@ These tools encapsulate common and repetitive tasks, allowing for easy integrati
 - [Composite Actions](#-composite-actions)
 - [Workflows](#-workflows)
   - [Auto Label and Release Management](#-auto-label-and-release-management)
-  - [Docker Workflows](#-docker-workflows)
   - [Code Architecture](#-code-architecture)
   - [Static Analysis](#-static-analysis)
 - [License](#-license)
@@ -104,7 +102,7 @@ name: 🏷️ Add labels
 
 jobs:
   label:
-    uses: wayofdev/gh-actions/.github/workflows/apply-labels.yml@master
+    uses: cycle/gh-actions/.github/workflows/apply-labels.yml@master
     with:
       os: ubuntu-latest
     secrets:
@@ -165,7 +163,7 @@ name: 🤞 Auto merge release
 
 jobs:
   auto-merge:
-    uses: wayofdev/gh-actions/.github/workflows/auto-merge-release.yml@master
+    uses: cycle/gh-actions/.github/workflows/auto-merge-release.yml@master
     with:
       os: ubuntu-latest
       pull-request-number: ${{ github.event.pull_request.number }}
@@ -203,7 +201,7 @@ name: 🦋 Create release or publish to pnpm
 
 jobs:
     release:
-        uses: wayofdev/gh-actions/.github/workflows/create-changesets-release.yml@master
+        uses: cycle/gh-actions/.github/workflows/create-changesets-release.yml@master
         with:
             node: 18
             repository: wayofdev/next-starter-tpl
@@ -272,7 +270,7 @@ jobs:
     needs: prepare
     strategy:
       matrix: ${{ fromJson(needs.prepare.outputs.matrix )}}
-    uses: wayofdev/gh-actions/.github/workflows/build-image.yml@master
+    uses: cycle/gh-actions/.github/workflows/build-image.yml@master
     with:
       os: "ubuntu-latest"
       push-to-hub: true
@@ -324,7 +322,7 @@ permissions: read-all
 
 jobs:
   codesee:
-    uses: wayofdev/gh-actions/.github/workflows/create-arch-diagram.yml@master
+    uses: cycle/gh-actions/.github/workflows/create-arch-diagram.yml@master
     with:
       os: ubuntu-latest
       continue-on-error: true
@@ -363,7 +361,7 @@ permissions:
 
 jobs:
   shellcheck:
-    uses: wayofdev/gh-actions/.github/workflows/shellcheck.yml@master
+    uses: cycle/gh-actions/.github/workflows/shellcheck.yml@master
     with:
       os: ubuntu-latest
       severity: warning
@@ -380,7 +378,7 @@ Real-world examples can be found in the [`wayofdev/laravel-package-tpl`](https:/
 
 ## 🤝 License
 
-[![Licence](https://img.shields.io/github/license/wayofdev/gh-actions?style=for-the-badge&color=blue)](./LICENSE)
+[![Licence](https://img.shields.io/github/license/cycle/gh-actions?style=for-the-badge&color=blue)](./LICENSE)
 
 <br>
 
@@ -428,6 +426,6 @@ Created in **2023** by [lotyp](https://github.com/wayofdev) @ [wayofdev](https:/
 
 ## 🫡 Contributors
 
-<img align="left" src="https://img.shields.io/github/contributors-anon/wayofdev/gh-actions?style=for-the-badge" alt="Contributors Badge"/>
+<img align="left" src="https://img.shields.io/github/contributors-anon/cycle/gh-actions?style=for-the-badge" alt="Contributors Badge"/>
 
 <br>

@@ -49,9 +49,9 @@ help: ## Show this menu
 	@echo
 	@echo '    📑 Logs are stored in      $(MAKE_LOGFILE)'
 	@echo
-	@echo '    📦 Package                 gh-actions (github.com/wayofdev/gh-actions)'
+	@echo '    📦 Package                 gh-actions (github.com/cycle/gh-actions)'
 	@echo '    🤠 Author                  Andrij Orlenko (github.com/lotyp)'
-	@echo '    🏢 ${YELLOW}Org                     wayofdev (github.com/wayofdev)${RST}'
+	@echo '    🏢 ${YELLOW}Org                     cycle (github.com/cycle)${RST}'
 	@echo
 .PHONY: help
 

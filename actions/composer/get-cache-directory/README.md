@@ -1,15 +1,15 @@
 <br>
 <div align="center">
-<img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-light-mode-only.png#gh-light-mode-only" alt="WayOfDev Logo for light theme">
-<img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-dark-mode-only.png#gh-dark-mode-only" alt="WayOfDev Logo for dark theme">
+<img width="456" src="https://raw.githubusercontent.com/cycle/gh-actions/master/assets/logo.gh-light-mode-only.png#gh-light-mode-only" alt="WayOfDev Logo for light theme">
+<img width="456" src="https://raw.githubusercontent.com/cycle/gh-actions/master/assets/logo.gh-dark-mode-only.png#gh-dark-mode-only" alt="WayOfDev Logo for dark theme">
 </div>
 <br>
 <br>
 
 <div align="center">
-<a href="https://github.com/wayofdev/gh-actions/actions" target="_blank"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fgh-actions%2Fbadge&style=flat-square"/></a>
-<a href="../../../LICENSE.md"><img src="https://img.shields.io/github/license/wayofdev/gh-actions.svg?style=flat-square&color=blue" alt="Software License"/></a>
-<a href="https://github.com/wayofdev/gh-actions" target="_blank"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/wayofdev/gh-actions/latest?style=flat-square"></a>
+<a href="https://github.com/cycle/gh-actions/actions" target="_blank"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fgh-actions%2Fbadge&style=flat-square"/></a>
+<a href="../../../LICENSE.md"><img src="https://img.shields.io/github/license/cycle/gh-actions.svg?style=flat-square&color=blue" alt="Software License"/></a>
+<a href="https://github.com/cycle/gh-actions" target="_blank"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/cycle/gh-actions/latest?style=flat-square"></a>
 <a href="https://conventionalcommits.org" target="_blank"><img alt="Conventional Commits" src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=flat-square&label=conventional%20commits"></a>
 <a href="https://discord.gg/CE3TcCC5vr" target="_blank"><img alt="Codecov" src="https://img.shields.io/discord/1228506758562058391?style=flat-square&logo=discord&labelColor=7289d9&logoColor=white&color=39456d"></a>
 <a href="https://twitter.com/intent/follow?screen_name=wayofdev" target="_blank"><img src="https://img.shields.io/twitter/follow/wayofdev.svg?style=flat-square&logo=x&color=6e7781"></a>
@@ -48,7 +48,7 @@ jobs:
       # ...
 
       - name: 🎯 Get Composer Cache Directory
-        uses: wayofdev/gh-actions/actions/composer/get-cache-directory@master
+        uses: cycle/gh-actions/actions/composer/get-cache-directory@master
         with:
           working-directory: '.'
 
