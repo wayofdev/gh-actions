@@ -1,8 +1,12 @@
 <br>
 
 <div align="center">
-<img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-light-mode-only.png#gh-light-mode-only" alt="WayOfDev Logo for light theme">
-<img width="456" src="https://raw.githubusercontent.com/wayofdev/gh-actions/master/assets/logo.gh-dark-mode-only.png#gh-dark-mode-only" alt="WayOfDev Logo for dark theme">
+    <a href="https://wayof.dev" target="_blank">
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wayofdev/.github/master/assets/logo.gh-dark-mode-only.png">
+            <img width="400" src="https://raw.githubusercontent.com/wayofdev/.github/master/assets/logo.gh-light-mode-only.png" alt="WayOfDev Logo">
+        </picture>
+    </a>
 </div>
 
 <br>
@@ -412,13 +416,15 @@ You are more than welcome. Before contributing, kindly check our [contribution g
 
 ## 👨‍💻 Author Information
 
-Created in **2023** by [lotyp](https://github.com/wayofdev) @ [wayofdev](https://github.com/wayofdev)
+Created in **2023** by [lotyp](https://github.com/lotyp) @ [wayofdev](https://github.com/wayofdev)
 
 <br>
 
 ## 🧱 Useful Resources
 
 * [Composite Actions vs Reusable Workflows: what is the difference?](https://dev.to/n3wt0n/composite-actions-vs-reusable-workflows-what-is-the-difference-github-actions-11kd)
+
+* [cycle/gh-actions](https://github.com/cycle/gh-actions) — Downstream repository of reusable GitHub Actions for [Cycle](https://github.com/cycle) organization.
 
 * [ergebnis/.github](https://github.com/ergebnis/.github) — Shareable actions of the [@ergebnis](https://github.com/ergebnis) organization.
 
