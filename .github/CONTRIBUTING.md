@@ -61,7 +61,7 @@ $ make help
 
 Our project employs [GitHub Actions](https://github.com/features/actions) for continuous integration, ensuring code quality and reliability. We encourage contributors to review our workflow configurations to understand the CI processes:
 
-- [`workflows/integrate.yaml`](workflows/integrate.yaml)
+- [`workflows/integrate.yaml`](workflows/integrate.yml)
 - [`workflows/triage.yml`](workflows/triage.yml)
 - [`workflows/release.yml`](workflows/create-arch-diagram.yml)
 
