@@ -412,13 +412,15 @@ You are more than welcome. Before contributing, kindly check our [contribution g
 
 ## 👨‍💻 Author Information
 
-Created in **2023** by [lotyp](https://github.com/wayofdev) @ [wayofdev](https://github.com/wayofdev)
+Created in **2023** by [lotyp](https://github.com/lotyp) @ [wayofdev](https://github.com/wayofdev)
 
 <br>
 
 ## 🧱 Useful Resources
 
 * [Composite Actions vs Reusable Workflows: what is the difference?](https://dev.to/n3wt0n/composite-actions-vs-reusable-workflows-what-is-the-difference-github-actions-11kd)
+
+* [cycle/gh-actions](https://github.com/cycle/gh-actions) — Downstream repository of reusable GitHub Actions for [Cycle](https://github.com/cycle) organization.
 
 * [ergebnis/.github](https://github.com/ergebnis/.github) — Shareable actions of the [@ergebnis](https://github.com/ergebnis) organization.
 
