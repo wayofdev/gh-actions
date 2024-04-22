@@ -8,7 +8,6 @@
         </picture>
     </a>
 </div>
-
 <br>
 
 <br>

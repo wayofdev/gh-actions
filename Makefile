@@ -77,11 +77,11 @@ lint: lint-yaml lint-actions ## Lint all files
 .PHONY: lint
 
 lint-yaml: ## Lint all yaml files
-	@$(YAML_LINT_RUNNER)
+	@$(YAML_LINT_RUNNER) | tee -a $(MAKE_LOGFILE)
 .PHONY: lint-yaml
 
 lint-actions: ## Lint all github actions
-	@$(ACTION_LINT_RUNNER)
+	@$(ACTION_LINT_RUNNER) | tee -a $(MAKE_LOGFILE)
 .PHONY: lint-actions
 
 #
