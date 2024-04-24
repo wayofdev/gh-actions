@@ -2,7 +2,7 @@
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -10,7 +10,7 @@ repos:
       - id: fix-encoding-pragma
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.20.0
+    rev: v3.24.0
     hooks:
       - id: commitizen
         stages:
@@ -22,5 +22,14 @@ repos:
       - id: action-validator
         stages:
           - commit-msg
+
+  - repo: local
+    hooks:
+      - id: markdownlint
+        name: markdownlint-cli2
+        description: Run markdownlint-cli2 on your Markdown files using the docker image
+        language: docker_image
+        types: [markdown]
+        entry: davidanson/markdownlint-cli2-rules:latest
 
 ...

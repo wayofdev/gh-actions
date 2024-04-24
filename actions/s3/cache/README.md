@@ -35,7 +35,7 @@ This GitHub Action allows you to save and restore cache artifacts from an S3 buc
 
 ## 📥 Inputs
 
-* `cache-action`
+- `cache-action`
 
   Specify what to do with the cache: save to a s3 bucket or restore from the s3 bucket into `cache_path`.
 
@@ -43,7 +43,7 @@ This GitHub Action allows you to save and restore cache artifacts from an S3 buc
   - Required
   - Possible values: save, restore
 
-* `cache-path`
+- `cache-path`
 
   Absolute or relative path to a folder with cache. When `cache-action` is `save` the path itself will not be saved, only the contents of the directory (including all subdirectories). When `cache-action` is `restore` all folders in `cache_path` will be created first and cache will be restored from the S3 bucket into this folder.
 
@@ -51,21 +51,21 @@ This GitHub Action allows you to save and restore cache artifacts from an S3 buc
   - Required
   - Default: .
 
-* `s3-bucket-name`
+- `s3-bucket-name`
 
   AWS S3 bucket name which will be used to save cache to and restore it from.
 
   - Type: string
   - Required
 
-* `cache-key`
+- `cache-key`
 
   A cache key which is used only to save cache to S3 bucket
 
   - Type: string
   - Required only when `cache-action` is `save`
 
-* `restore-keys`
+- `restore-keys`
 
   An ordered list of keys to use for restoring cache from the s3 bucket
 
@@ -73,11 +73,13 @@ This GitHub Action allows you to save and restore cache artifacts from an S3 buc
   - Required only when `cache-action` is `restore`
 
   You can specify multiple keys by putting each key on its own line:
+
     ```yaml
     restore-keys: |-
       ${{ runner.os }}-cache-${{ hashfiles('**/.package-lock.json') }}
       ${{ runner.os }}-cache
     ```
+
   The first matching key will be restored.
 
 <br>
@@ -161,11 +163,13 @@ jobs:
 ```
 
 In the restore example, the action will attempt to restore the cache using the provided `restore-keys` in the specified order. If a cache hit occurs for a key, the restoration process will stop, and the cached files will be extracted to the `cache-path`.
+
 ### → Error Handling
 
 The action will fail if any of the required inputs or environment variables are missing or if an invalid `cache-action` is provided. Appropriate error messages will be logged to help troubleshoot the issue.
 
 ### → Creating a Cache Key
+
 A cache key can include any of the contexts, functions, literals, and operators supported by GitHub Actions.
 
 For example, using the `hashFiles` function allows you to create a new cache when dependencies change. The `hashFiles` function is specific to GitHub Actions.
@@ -175,7 +179,6 @@ cache-key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 ```
 
 Additionally, you can use arbitrary command output in a cache key, such as a date or software version:
-
 
 ```yaml
 ---
@@ -210,7 +213,7 @@ See [GitHub Contexts and Expressions](https://docs.github.com/en/actions/learn-g
 
 <br>
 
-##  ☝️ Limitations
+## ☝️ Limitations
 
 This action has not been tested on self-hosted runners or when running inside a container, or other S3 buckets, other than AWS.
 

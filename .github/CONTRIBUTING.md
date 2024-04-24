@@ -12,19 +12,18 @@ Before you begin, you will need to set up your local development environment. He
 
 - **Operating System**: macOS Monterey+, Linux, or Windows with WSL2.
 - **Docker**: Version 26.0.0 or newer. Installation guides:
-    - [Docker on Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)
-    - [Docker Desktop on Mac](https://docs.docker.com/desktop/install/mac-install/)
+  - [Docker on Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)
+  - [Docker Desktop on Mac](https://docs.docker.com/desktop/install/mac-install/)
 - **Homebrew** (macOS only): Install via [brew.sh](https://brew.sh/).
 
 ### → Optional Tools
 
 - [Pre-commit](https://pre-commit.com) — Automates the running of git pre-commit hooks.
-    - Installation: `brew install pre-commit` and `make hooks`
+  - Installation: `brew install pre-commit` and `make hooks`
 - [Cz-git](https://cz-git.qbb.sh) — Commitizen adapter, that assists in formatting git commits.
-    - Installation: `brew install czg`
+  - Installation: `brew install czg`
 - [Act](https://github.com/nektos/act) — To run and test GitHub actions locally.
-    - Installation: `brew install act`
-
+  - Installation: `brew install act`
 
 <br>
 
@@ -35,7 +34,7 @@ This project uses a Makefile to streamline common development tasks. The Makefil
 Refer to the output of `make help` for a comprehensive list of available commands.
 
 ```bash
-$ make help
+make help
 ```
 
 ![Screenshot](../assets/screenshot.png)
@@ -67,15 +66,15 @@ Our project employs [GitHub Actions](https://github.com/features/actions) for co
 
 <br>
 
-## ✉️ Commit Message Guidelines
+## 📩 Commit Message Guidelines
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) standard. Please structure your commit messages as follows, using the appropriate prefix:
 
 **Examples:**
 
 ```bash
-$ git commit -am 'feat: some feature was introduced'
-$ git commit -am 'fix: something has been fixed'
+git commit -am 'feat: some feature was introduced'
+git commit -am 'fix: something has been fixed'
 ```
 
 **Allowed Prefixes:**
@@ -109,7 +108,7 @@ We use [`yamllint`](https://github.com/adrienverge/yamllint) to enforce coding s
 To lint yaml files run:
 
 ```bash
-$ make lint-yaml
+make lint-yaml
 ```
 
 by default, [`cytopia/yamllint`](https://github.com/cytopia/docker-yamllint) Docker image will be used to run linter.
@@ -121,7 +120,7 @@ We use [`actionlint`](https://github.com/rhysd/actionlint) to enforce coding sta
 To lint GitHub Actions run:
 
 ```bash
-$ make lint-actions
+make lint-actions
 ```
 
 by default, [`rhysd/actionlint`](https://hub.docker.com/r/rhysd/actionlint/tags) Docker image will be used to run linter.
@@ -146,7 +145,7 @@ Our pre-commit configuration includes several hooks:
 To utilize these hooks, you first need to install them using the command provided by the Makefile:
 
 ```bash
-$ make hooks
+make hooks
 ```
 
 <br>

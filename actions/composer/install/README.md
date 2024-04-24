@@ -16,7 +16,6 @@
 <a href="https://x.com/intent/follow?screen_name=wayofdev" target="_blank"><img alt="Follow on Twitter (X)" src="https://img.shields.io/badge/-Follow-black?style=flat-square&logo=X"></a>
 </div>
 
-
 <br>
 
 # Composer / Install
@@ -95,18 +94,19 @@ none
 - When `dependencies` is set to `"lowest"`, dependencies are installed in the directory specified by `working-directory` with
 
   ```bash
-  $ composer update --ansi --no-interaction --no-progress --prefer-lowest
+  composer update --ansi --no-interaction --no-progress --prefer-lowest
   ````
+
 - When `dependencies` is set to `"locked"`, dependencies are installed in the directory specified by `working-directory` with
 
   ```bash
-  $ composer install --ansi --no-interaction --no-progress
+  composer install --ansi --no-interaction --no-progress
   ```
 
 - When `dependencies` is set to `"highest"`, dependencies are installed in the directory specified by `working-directory` with
 
   ```bash
-  $ composer update --ansi --no-interaction --no-progress
+  composer update --ansi --no-interaction --no-progress
   ````
 
 <br>
