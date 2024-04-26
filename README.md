@@ -36,12 +36,12 @@ These tools encapsulate common and repetitive tasks, allowing for easy integrati
   - [Docker Workflows](#-docker-workflows)
   - [Code Architecture](#-code-architecture)
   - [Static Analysis](#-static-analysis)
-- [License](#-license)
 - [Security Policy](#-security-policy)
 - [Contributing](#-want-to-contribute)
 - [Social Links](#-social-links)
-- [Useful Resources](#-useful-resources)
 - [Contributors](#-contributors)
+- [Useful Resources](#-useful-resources)
+- [License](#%EF%B8%8F-license)
 
 <br>
 
@@ -428,7 +428,7 @@ You are more than welcome. Before contributing, kindly check our [contribution g
 
 <br>
 
-## 🤝 License
+## ⚖️ License
 
 [![Licence](https://img.shields.io/github/license/wayofdev/gh-actions?style=for-the-badge&color=blue)](./LICENSE.md)
 
