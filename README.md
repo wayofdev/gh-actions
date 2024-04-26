@@ -410,6 +410,12 @@ You are more than welcome. Before contributing, kindly check our [contribution g
 
 <br>
 
+## 🫡 Contributors
+
+<a href="https://github.com/wayofdev/gh-actions/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors-anon/wayofdev/gh-actions?style=for-the-badge" alt="Contributors Badge"/></a>
+
+<br>
+
 ## 🧱 Useful Resources
 
 - [Composite Actions vs Reusable Workflows: what is the difference?](https://dev.to/n3wt0n/composite-actions-vs-reusable-workflows-what-is-the-difference-github-actions-11kd)
@@ -419,14 +425,6 @@ You are more than welcome. Before contributing, kindly check our [contribution g
 - [ergebnis/.github](https://github.com/ergebnis/.github) — Shareable actions of the [@ergebnis](https://github.com/ergebnis) organization.
 
 - [skills/reusable-workflows](https://github.com/skills/reusable-workflows) — Reusable workflow examples
-
-<br>
-
-## 🫡 Contributors
-
-<a href="https://github.com/wayofdev/gh-actions/graphs/contributors" target="_blank">
-    <img src="https://img.shields.io/github/contributors-anon/wayofdev/gh-actions?style=for-the-badge" alt="Contributors Badge"/>
-</a>
 
 <br>
 
