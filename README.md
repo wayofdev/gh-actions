@@ -1,19 +1,17 @@
-<br>
-
 <div align="center">
+    <br>
     <a href="https://wayof.dev" target="_blank">
         <picture>
             <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wayofdev/.github/master/assets/logo.gh-dark-mode-only.png">
             <img width="400" src="https://raw.githubusercontent.com/wayofdev/.github/master/assets/logo.gh-light-mode-only.png" alt="WayOfDev Logo">
         </picture>
     </a>
+    <br>
+    <br>
 </div>
-<br>
-
-<br>
 
 <div align="center">
-<a href="https://github.com/wayofdev/gh-actions/actions" target="_blank"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fgh-actions%2Fbadge&style=flat-square"/></a>
+<a href="https://github.com/wayofdev/gh-actions/actions" target="_blank"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fgh-actions%2Fbadge&style=flat-square&label=github%20actions"/></a>
 <a href="https://github.com/wayofdev/gh-actions" target="_blank"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/wayofdev/gh-actions/latest?style=flat-square"></a>
 <a href="https://discord.gg/CE3TcCC5vr" target="_blank"><img alt="Codecov" src="https://img.shields.io/discord/1228506758562058391?style=flat-square&logo=discord&labelColor=7289d9&logoColor=white&color=39456d"></a>
 <a href="https://x.com/intent/follow?screen_name=wayofdev" target="_blank"><img alt="Follow on Twitter (X)" src="https://img.shields.io/badge/-Follow-black?style=flat-square&logo=X"></a>
@@ -42,7 +40,6 @@ These tools encapsulate common and repetitive tasks, allowing for easy integrati
 - [Security Policy](#-security-policy)
 - [Contributing](#-want-to-contribute)
 - [Social Links](#-social-links)
-- [Author Information](#-author-information)
 - [Useful Resources](#-useful-resources)
 - [Contributors](#-contributors)
 
@@ -385,12 +382,6 @@ Real-world examples can be found in the [`wayofdev/laravel-package-tpl`](https:/
 
 <br>
 
-## 🤝 License
-
-[![Licence](https://img.shields.io/github/license/wayofdev/gh-actions?style=for-the-badge&color=blue)](./LICENSE)
-
-<br>
-
 ## 🔒 Security Policy
 
 This project has a [security policy](.github/SECURITY.md).
@@ -419,12 +410,6 @@ You are more than welcome. Before contributing, kindly check our [contribution g
 
 <br>
 
-## 👨‍💻 Author Information
-
-Created in **2023** by [lotyp](https://github.com/lotyp) @ [wayofdev](https://github.com/wayofdev)
-
-<br>
-
 ## 🧱 Useful Resources
 
 - [Composite Actions vs Reusable Workflows: what is the difference?](https://dev.to/n3wt0n/composite-actions-vs-reusable-workflows-what-is-the-difference-github-actions-11kd)
@@ -439,6 +424,14 @@ Created in **2023** by [lotyp](https://github.com/lotyp) @ [wayofdev](https://gi
 
 ## 🫡 Contributors
 
-<img align="left" src="https://img.shields.io/github/contributors-anon/wayofdev/gh-actions?style=for-the-badge" alt="Contributors Badge"/>
+<a href="https://github.com/wayofdev/gh-actions/graphs/contributors" target="_blank">
+    <img src="https://img.shields.io/github/contributors-anon/wayofdev/gh-actions?style=for-the-badge" alt="Contributors Badge"/>
+</a>
+
+<br>
+
+## 🤝 License
+
+[![Licence](https://img.shields.io/github/license/wayofdev/gh-actions?style=for-the-badge&color=blue)](./LICENSE.md)
 
 <br>
