@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.1.0](https://github.com/wayofdev/gh-actions/compare/v3.0.0...v3.1.0) (2024-05-09)
+
+
+### Features
+
+* use markdown-linter in CI and locally ([f0830f0](https://github.com/wayofdev/gh-actions/commit/f0830f06b6cb7f3fdbeda015e808f9a094b2f09d))
+
+
+### Documentation
+
+* contribute options as links ([4a7531a](https://github.com/wayofdev/gh-actions/commit/4a7531af9d65e834936e2d561c1bb36777e3e555))
+* move badges ([9cc1d4a](https://github.com/wayofdev/gh-actions/commit/9cc1d4ad4c24d6b737f0c97a1627d4644d128ac1))
+* readme updates ([99620a3](https://github.com/wayofdev/gh-actions/commit/99620a3940cc5a52622d2a7236deded42ffc8942))
+* readme updates ([7ed6f3a](https://github.com/wayofdev/gh-actions/commit/7ed6f3a132c527d8ce7e1924f42283764853128f))
+* readme updates ([1226f48](https://github.com/wayofdev/gh-actions/commit/1226f488eb7bbee44b45dc864d3b58a250cfbad0))
+* update readme logo ([75e4b9a](https://github.com/wayofdev/gh-actions/commit/75e4b9abe96364f2835d37522b9e7606bd18b9fa))
+* updating readme ([bc5ff9c](https://github.com/wayofdev/gh-actions/commit/bc5ff9cb410a5ef64a99884c0db216dc7b7053eb))
+* updating twitter badge ([88f5cac](https://github.com/wayofdev/gh-actions/commit/88f5cacc2a31cebd5b263af4b315956166f7af2d))
+
 ## [3.0.0](https://github.com/wayofdev/gh-actions/compare/v2.0.0...v3.0.0) (2024-04-18)
 
 
