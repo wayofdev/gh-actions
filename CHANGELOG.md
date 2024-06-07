@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/wayofdev/gh-actions/compare/v3.1.0...v3.1.1) (2024-06-07)
+
+
+### Bug Fixes
+
+* wrong phive cache key in github action ([900467c](https://github.com/wayofdev/gh-actions/commit/900467cace4e62270d0fc85f1569ab605e3ff98d))
+
 ## [3.1.0](https://github.com/wayofdev/gh-actions/compare/v3.0.0...v3.1.0) (2024-05-09)
 
 
