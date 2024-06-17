@@ -91,7 +91,7 @@ jobs:
           platforms: ${{ inputs.image-platform }}
 
       - name: 🚀 Build image and push to docker-hub for "${{ inputs.image-platform }}"
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: '${{ inputs.image-template-path }}/${{ inputs.image-template }}'
           platforms: ${{ inputs.image-platform }}
