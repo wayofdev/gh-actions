@@ -45,8 +45,8 @@ runs:
 
           core.setFailed(`Unable to determine the pull request number for event "${context.eventName}"`);
 
-    - name: "Request reviewer"
-      uses: "actions/github-script@v7.0.1"
+    - name: 🙋‍♂️ Request reviewer
+      uses: actions/github-script@v7.0.1
       env:
         REVIEWER: "${{ inputs.reviewer }}"
       with:
