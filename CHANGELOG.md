@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/wayofdev/gh-actions/compare/v3.1.1...v3.2.0) (2024-09-05)
+
+
+### Features
+
+* composite actions to work with github PRs ([d769688](https://github.com/wayofdev/gh-actions/commit/d769688788745be4cc6084ee3042a1f62f78b612))
+
 ## [3.1.1](https://github.com/wayofdev/gh-actions/compare/v3.1.0...v3.1.1) (2024-06-07)
 
 
