@@ -5,7 +5,7 @@ on:  # yamllint disable-line rule:truthy
     types:
       - completed
     workflows:
-      - '🔍 Continuous integration'
+      - 'Continuous integration'
 
 name: 📥 Merge pull requests
 
