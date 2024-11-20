@@ -20,6 +20,6 @@ jobs:
     with:
       os: ubuntu-latest
     secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      token: ${{ secrets.WAY_FINDER_BOT_TOKEN }}
 
 ...
