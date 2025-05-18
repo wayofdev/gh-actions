@@ -33,7 +33,7 @@ runs:
 
     - name: ⚙️ Install pnpm
       if: inputs.enable-corepack == 'false'
-      uses: pnpm/action-setup@v2
+      uses: pnpm/action-setup@v4
       id: pnpm-install
       with:
         run_install: false
