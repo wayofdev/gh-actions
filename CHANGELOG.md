@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.0](https://github.com/wayofdev/gh-actions/compare/v3.2.0...v3.3.0) (2025-05-18)
+
+
+### Features
+
+* bump release ([7d3f3b6](https://github.com/wayofdev/gh-actions/commit/7d3f3b6c4c7ae42626b9ff5afabd1914da9fbe00))
+
 ## [3.2.0](https://github.com/wayofdev/gh-actions/compare/v3.1.1...v3.2.0) (2024-09-05)
 
 
