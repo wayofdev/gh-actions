@@ -3,9 +3,7 @@
 extends: default
 
 ignore: |
-  node_modules/
   assets/
-  pnpm-lock.yaml
 
 rules:
   braces:

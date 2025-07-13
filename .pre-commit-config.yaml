@@ -7,21 +7,29 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
-      - id: fix-encoding-pragma
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.7.1
+    rev: v4.8.3
     hooks:
       - id: commitizen
         stages:
           - commit-msg
 
   - repo: https://github.com/mpalmer/action-validator
-    rev: v0.6.0
+    rev: v0.7.1
     hooks:
       - id: action-validator
-        stages:
-          - commit-msg
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.37.1
+    hooks:
+      - id: yamllint
+        args: [-c=.yamllint.yaml]
 
   - repo: local
     hooks:
