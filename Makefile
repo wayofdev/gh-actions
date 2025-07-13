@@ -17,6 +17,11 @@ MARKDOWN_LINT_RUNNER ?= $(DOCKER) run --rm $$(tty -s && echo "-it" || echo) \
 	--workdir /app \
 	davidanson/markdownlint-cli2-rules:latest
 
+RENOVATE_RUNNER ?= $(DOCKER) run --rm $$(tty -s && echo "-it" || echo) \
+	-v $(shell pwd):/usr/src/app \
+	--workdir /usr/src/app \
+	renovate/renovate:latest
+
 #
 # Self documenting Makefile code
 # ------------------------------------------------------------------------------------
@@ -78,7 +83,7 @@ hooks: ## Install git hooks from pre-commit-config
 	pre-commit autoupdate
 .PHONY: hooks
 
-lint: lint-yaml lint-actions lint-md ## Lint all files
+lint: lint-yaml lint-actions lint-md lint-renovate ## Lint all files
 .PHONY: lint
 
 lint-yaml: ## Lint all yaml files
@@ -96,6 +101,24 @@ lint-md: ## Lint all markdown files using markdownlint-cli2
 lint-md-dry: ## Lint all markdown files using markdownlint-cli2 in dry-run mode
 	@$(MARKDOWN_LINT_RUNNER) "**/*.md" "#CHANGELOG.md" | tee -a $(MAKE_LOGFILE)
 .PHONY: lint-md-dry
+
+lint-renovate: ## Validate renovate configuration
+	@echo "${GREEN}🤖 Validating renovate.json5 configuration...${RST}"
+	@$(RENOVATE_RUNNER) renovate-config-validator renovate.json5 | tee -a $(MAKE_LOGFILE)
+.PHONY: lint-renovate
+
+renovate-dry-run: ## Run renovate in dry-run mode (requires GITHUB_TOKEN)
+	@echo "${GREEN}🤖 Running renovate in dry-run mode...${RST}"
+	@if [ -z "$(GITHUB_TOKEN)" ]; then \
+		echo "${RED}❌ Error: GITHUB_TOKEN environment variable is required${RST}"; \
+		echo "${YELLOW}💡 Set it with: export GITHUB_TOKEN=your_token_here${RST}"; \
+		exit 1; \
+	fi
+	@$(RENOVATE_RUNNER) \
+		-e GITHUB_TOKEN="$(GITHUB_TOKEN)" \
+		-e LOG_LEVEL=info \
+		renovate --dry-run --print-config | tee -a $(MAKE_LOGFILE)
+.PHONY: renovate-dry-run
 
 #
 # Release

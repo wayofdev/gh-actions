@@ -9,9 +9,8 @@
     <br>
     <br>
 </div>
-
 <div align="center">
-<a href="https://github.com/wayofdev/gh-actions/actions" target="_blank"><img alt="Build Status" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwayofdev%2Fgh-actions%2Fbadge&style=flat-square&label=github%20actions"/></a>
+<a href="https://github.com/wayofdev/gh-actions/actions" target="_blank"><img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/wayofdev/gh-actions/release.yml?branch=master&style=flat-square&label=github%20actions"/></a>
 <a href="https://github.com/wayofdev/gh-actions" target="_blank"><img alt="Commits since latest release" src="https://img.shields.io/github/commits-since/wayofdev/gh-actions/latest?style=flat-square"></a>
 <a href="https://discord.gg/CE3TcCC5vr" target="_blank"><img alt="Codecov" src="https://img.shields.io/discord/1228506758562058391?style=flat-square&logo=discord&labelColor=7289d9&logoColor=white&color=39456d"></a>
 <a href="https://x.com/intent/follow?screen_name=wayofdev" target="_blank"><img alt="Follow on Twitter (X)" src="https://img.shields.io/badge/-Follow-black?style=flat-square&logo=X"></a>
@@ -395,7 +394,7 @@ Thank you for considering contributing to the wayofdev community! We are open to
 - 🤔 [Suggest a feature](https://github.com/wayofdev/gh-actions/issues/new?assignees=&labels=type%3A+enhancement&projects=&template=2-feature-request.yml&title=%5BFeature%5D%3A+)
 - 🐛 [Report an issue](https://github.com/wayofdev/gh-actions/issues/new?assignees=&labels=type%3A+documentation%2Ctype%3A+maintenance&projects=&template=1-bug-report.yml&title=%5BBug%5D%3A+)
 - 📖 [Improve documentation](https://github.com/wayofdev/gh-actions/issues/new?assignees=&labels=type%3A+documentation%2Ctype%3A+maintenance&projects=&template=4-docs-bug-report.yml&title=%5BDocs%5D%3A+)
-- 👨‍💻 Contribute to the code
+- 👨‍💻 [Contribute to the code](.github/CONTRIBUTING.md)
 
 You are more than welcome. Before contributing, kindly check our [contribution guidelines](.github/CONTRIBUTING.md).
 

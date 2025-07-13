@@ -1,0 +1,84 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended",
+        "group:monorepos",
+        "group:recommended",
+        "workarounds:all"
+    ],
+    "prHourlyLimit": 0,
+    "automerge": true,
+    "platformAutomerge": true,
+    "dependencyDashboard": true,
+    "dependencyDashboardTitle": "🤖 Dependency Dashboard",
+    "commitMessagePrefix": "chore(deps):",
+    "commitMessageAction": "update",
+    "commitMessageTopic": "{{depName}}",
+    "commitMessageExtra": "to {{newVersion}}",
+    "labels": ["dependencies"],
+    "assignees": ["lotyp"],
+    "timezone": "Europe/Warsaw",
+    "schedule": ["before 6am on Monday"],
+    "lockFileMaintenance": {
+        "enabled": true,
+        "automerge": true,
+        "schedule": ["before 6am on Monday"]
+    },
+    "packageRules": [
+        {
+            "description": "Group GitHub Actions updates",
+            "matchManagers": ["github-actions"],
+            "groupName": "GitHub Actions",
+            "automerge": true,
+            "addLabels": ["github-actions"],
+            "commitMessageTopic": "GitHub Actions"
+        },
+        {
+            "description": "Group pre-commit hook updates",
+            "matchManagers": ["pre-commit"],
+            "groupName": "pre-commit hooks",
+            "automerge": true,
+            "addLabels": ["pre-commit"],
+            "commitMessageTopic": "pre-commit hooks"
+        },
+        {
+            "description": "Separate major updates",
+            "matchUpdateTypes": ["major"],
+            "groupName": "major dependencies",
+            "automerge": false,
+            "addLabels": ["major-update"],
+            "dependencyDashboardApproval": true
+        },
+        {
+            "description": "Auto-merge minor and patch updates",
+            "matchUpdateTypes": ["minor", "patch"],
+            "automerge": true,
+            "addLabels": ["auto-merge"]
+        },
+        {
+            "description": "Pin GitHub Action digests",
+            "matchManagers": ["github-actions"],
+            "pinDigests": true
+        },
+        {
+            "description": "Group wayofdev/gh-actions self-references",
+            "matchPackageNames": ["wayofdev/gh-actions"],
+            "groupName": "wayofdev/gh-actions self-updates",
+            "automerge": false,
+            "addLabels": ["self-update"],
+            "commitMessageTopic": "self-reference"
+        }
+    ],
+    "customManagers": [
+        {
+            "description": "Update schema versions in JSON files",
+            "customType": "regex",
+            "managerFilePatterns": ["/\\.json$/", "/\\.jsonc$/"],
+            "matchStrings": [
+                "\"\\$schema\":\\s*\"(?<depName>https://[^\"]+)/(?<currentValue>v[0-9]+\\.[0-9]+\\.[0-9]+)/[^\"]*\""
+            ],
+            "datasourceTemplate": "github-releases",
+            "extractVersionTemplate": "^v(?<version>.*)$"
+        }
+    ]
+}
